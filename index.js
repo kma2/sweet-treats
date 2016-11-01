@@ -16,10 +16,10 @@ Please change it in ${__dirname}/package.json
   ~ xoxo, bones
 ********************************************************************`
 
-const reasonableName = /^[[a-z0-9]\-]+$/
-if (!reasonableName.test(pkg.name)) {
-  console.error(chalk.red(nameError))
-}
+// const reasonableName = /^[[a-z0-9]\-]+$/
+// if (!reasonableName.test(pkg.name)) {
+//   console.error(chalk.red(nameError))
+// }
 
 module.exports = {
   get name() { return pkg.name },
