@@ -69,9 +69,6 @@
 	  { store: _store2.default },
 	  _react2.default.createElement(_App2.default, null)
 	), document.getElementById('main'));
-	
-	// import NavbarComponent from './components/navbar';
-	// import allProducts from './components/allProducts';
 
 /***/ },
 /* 1 */
@@ -24144,21 +24141,25 @@
 	
 	var _reactBootstrap = __webpack_require__(212);
 	
-	var _Navbar = __webpack_require__(467);
+	var _Navbar = __webpack_require__(463);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _AllProducts = __webpack_require__(466);
+	var _AllProducts = __webpack_require__(464);
 	
 	var _AllProducts2 = _interopRequireDefault(_AllProducts);
 	
-	var _SingleProduct = __webpack_require__(468);
+	var _SingleProduct = __webpack_require__(465);
 	
 	var _SingleProduct2 = _interopRequireDefault(_SingleProduct);
 	
-	var _ShoppingCart = __webpack_require__(469);
+	var _ShoppingCart = __webpack_require__(466);
 	
 	var _ShoppingCart2 = _interopRequireDefault(_ShoppingCart);
+	
+	var _SignIn = __webpack_require__(468);
+	
+	var _SignIn2 = _interopRequireDefault(_SignIn);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24188,13 +24189,35 @@
 					'div',
 					{ id: 'app' },
 					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(_ShoppingCart2.default, null)
+					_react2.default.createElement(_SignIn2.default, null)
 				);
 			}
 		}]);
 	
 		return App;
 	}(_react2.default.Component);
+	
+	// export default class App extends React.Component {
+	//
+	// 	constructor(props) {
+	// 		super(props);
+	// 	}
+	//
+	// 	render() {
+	//
+	// 		return (
+	// 			<div id="app" >
+	// 				<Navbar />
+	// 				{/*<AllProducts />
+	// 				<SingleProduct /> */}
+	// 				<ShoppingCart />
+	//
+	// 			</div>
+	// 		)
+	// 	}
+	//
+	// }
+	
 	
 	exports.default = App;
 
@@ -42897,84 +42920,7 @@
 	exports.ValidComponentChildren = _ValidComponentChildren3['default'];
 
 /***/ },
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(212);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-		return _react2.default.createElement(
-			_reactBootstrap.Grid,
-			null,
-			_react2.default.createElement(
-				_reactBootstrap.Row,
-				{ className: 'show-grid' },
-				_react2.default.createElement(
-					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Description'
-					),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Price'
-					)
-				),
-				_react2.default.createElement(
-					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Description'
-					),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Price'
-					)
-				),
-				_react2.default.createElement(
-					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Description'
-					),
-					_react2.default.createElement(
-						'p',
-						null,
-						'Price'
-					)
-				)
-			)
-		);
-	};
-
-/***/ },
-/* 467 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43095,7 +43041,81 @@
 	exports.default = NavbarComponent;
 
 /***/ },
-/* 468 */
+/* 464 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(212);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+		return _react2.default.createElement(
+			_reactBootstrap.Grid,
+			null,
+			_react2.default.createElement(
+				_reactBootstrap.Row,
+				{ className: 'show-grid' },
+				_react2.default.createElement(
+					_reactBootstrap.Col,
+					{ xs: 4 },
+					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Description'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Price'
+					)
+				),
+				_react2.default.createElement(
+					_reactBootstrap.Col,
+					{ xs: 4 },
+					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Description'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Price'
+					)
+				),
+				_react2.default.createElement(
+					_reactBootstrap.Col,
+					{ xs: 4 },
+					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Description'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Price'
+					)
+				)
+			)
+		);
+	};
+
+/***/ },
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43155,7 +43175,7 @@
 	};
 
 /***/ },
-/* 469 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43170,7 +43190,7 @@
 	
 	var _reactBootstrap = __webpack_require__(212);
 	
-	var _CartItem = __webpack_require__(470);
+	var _CartItem = __webpack_require__(467);
 	
 	var _CartItem2 = _interopRequireDefault(_CartItem);
 	
@@ -43254,7 +43274,7 @@
 	};
 
 /***/ },
-/* 470 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43334,6 +43354,91 @@
 				)
 			)
 		);
+	};
+
+/***/ },
+/* 468 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(212);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  return _react2.default.createElement(
+	    _reactBootstrap.Grid,
+	    null,
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      { className: 'show-grid' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 4 },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          ' Email '
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          ' Password '
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          {
+	            controlId: 'formBasicText',
+	            validationState: undefined.getValidationState()
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.ControlLabel,
+	            null,
+	            ' Email '
+	          ),
+	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            type: 'text',
+	            value: undefined.state.value,
+	            placeholder: 'Enter email',
+	            onChange: undefined.handleChange
+	          }),
+	          _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          {
+	            controlId: 'formBasicText',
+	            validationState: undefined.getValidationState()
+	          },
+	          _react2.default.createElement(
+	            _reactBootstrap.ControlLabel,
+	            null,
+	            ' Password '
+	          ),
+	          _react2.default.createElement(_reactBootstrap.FormControl, {
+	            type: 'text',
+	            value: undefined.state.value,
+	            placeholder: 'Enter password',
+	            onChange: undefined.handleChange
+	          }),
+	          _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
+	        )
+	      )
+	    )
+	  );
 	};
 
 /***/ }

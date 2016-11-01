@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 import AllProducts from './AllProducts'
 import SingleProduct from './SingleProduct';
 import ShoppingCart from './ShoppingCart';
-
+import SignIn from './SignIn';
 
 export default class App extends React.Component {
 
@@ -23,10 +23,32 @@ export default class App extends React.Component {
 				<Navbar />
 				{/*<AllProducts />
 				<SingleProduct /> */}
-				<ShoppingCart />
+				<SignIn />
 
 			</div>
 		)
 	}
 
 }
+
+
+// export default class App extends React.Component {
+//
+// 	constructor(props) {
+// 		super(props);
+// 	}
+//
+// 	render() {
+//
+// 		return (
+// 			<div id="app" >
+// 				<Navbar />
+// 				{/*<AllProducts />
+// 				<SingleProduct /> */}
+// 				<ShoppingCart />
+//
+// 			</div>
+// 		)
+// 	}
+//
+// }
