@@ -11,6 +11,7 @@ import ShoppingCartContainer from '../containers/ShoppingCartContainer';
 import SignInOrContinueAsGuest from './SignInOrContinueAsGuest';
 import SignIn from './SignIn'
 import Checkout from './Checkout';
+import ConfirmationPage from './ConfirmationPage';
 
 
 export default class App extends React.Component {
@@ -23,7 +24,11 @@ export default class App extends React.Component {
 		return (
 			<div id="app" >
 				<NavbarComponent />
-				<AllProductsContainer />
+
+				{/*<AllProducts />
+				<SingleProduct /> */}
+				<ConfirmationPage />
+
 			</div>
 		)
 	}
