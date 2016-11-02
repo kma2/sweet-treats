@@ -27,7 +27,7 @@ require('./models')
 
 // sync the db, creating it if necessary
 function sync(force=app.isTesting) {
-  return db.sync({force})
+  return db.sync({force:true})
     .then(ok => console.log(`Synced models to db ${url}`))
     .catch(fail => {
       if (app.isProduction) {
@@ -43,3 +43,12 @@ function sync(force=app.isTesting) {
 }
 
 db.didSync = sync()
+
+
+
+/*
+db.didSync 
+  .then(() => db.sync({force:true}))
+    .then(RUNSHIT)
+
+*/

@@ -9,10 +9,13 @@ const Candy = db.define('candy',{
   },
   photo:{
     type:Sequelize.STRING,
-    allowNull:false,
-    validate:{
-      isUrl:true
-    }
+    allowNull:false
+    // validate:{
+    //   isUrl:true
+    // }
+  },
+  short_description:{
+    type:Sequelize.STRING
   },
   description:{
     type:Sequelize.TEXT,
@@ -30,8 +33,12 @@ const Candy = db.define('candy',{
     type:Sequelize.FLOAT,
     allowNull:false
   },
+  rating:{
+    type:Sequelize.INTEGER,
+    allowNull:false
+  },
   review:{
-    type:Sequelize.ARRAY(Sequelize.INTEGER),
+    type:Sequelize.ARRAY(Sequelize.STRING),
     defaultValue:[]
   },
   numOrdered:{
