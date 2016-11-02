@@ -9,6 +9,7 @@ import AllProductsContainer from '../containers/AllProductsContainer'
 import SingleProductContainer from '../containers/SingleProductContainer';
 import ShoppingCartContainer from '../containers/ShoppingCartContainer';
 import SignInOrContinueAsGuest from './SignInOrContinueAsGuest';
+import SignIn from './SignIn'
 import Checkout from './Checkout';
 
 
@@ -19,14 +20,10 @@ export default class App extends React.Component {
 	}
 
 	render() {
-
 		return (
 			<div id="app" >
 				<NavbarComponent />
-				{/*<AllProducts />
-				<SingleProduct /> */}
-				<ShoppingCartContainer />
-
+				<AllProductsContainer />
 			</div>
 		)
 	}

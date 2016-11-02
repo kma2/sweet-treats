@@ -7,7 +7,7 @@ export default () => (
   <Grid>
 		<Row className="show-grid">
 
-      <h1> Sign In </h1>
+      <h2> Sign In </h2>
 
 			<Col xs={6}>
         <Form horizontal>

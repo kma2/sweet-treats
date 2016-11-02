@@ -2,4 +2,52 @@
 
 body {
   background: white;
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+
+/* ===== ALL PRODUCTS ===== */
+
+.sort_by {
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.product_preview_image {
+  height: 32vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.product_preview_name {
+  text-align: center;
+}
+
+.product_preview_description {
+  font-style: italic;
+  text-align: center;
+}
+
+
+/* ===== SINGLE PRODUCT ===== */
+
+.single_product {
+  padding-top: 5%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.product_image {
+  height: 45vh;
+}
+
+.product_name {
+  font-size: 2em;
+}
+
+.product_price {
+  font-size: 1.3em;
 }
