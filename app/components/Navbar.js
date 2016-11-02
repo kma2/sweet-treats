@@ -8,7 +8,7 @@ export default class NavbarComponent extends React.Component {
 
 	render() {
 		return (
-			  <Navbar inverse collapseOnSelect>
+			  <Navbar collapseOnSelect>
 			    <Navbar.Header>
 			      <Navbar.Brand>
 			        <a href="#">Candy Store</a>

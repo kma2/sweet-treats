@@ -24157,9 +24157,13 @@
 	
 	var _ShoppingCart2 = _interopRequireDefault(_ShoppingCart);
 	
-	var _SignIn = __webpack_require__(468);
+	var _SignInOrContinueAsGuest = __webpack_require__(468);
 	
-	var _SignIn2 = _interopRequireDefault(_SignIn);
+	var _SignInOrContinueAsGuest2 = _interopRequireDefault(_SignInOrContinueAsGuest);
+	
+	var _Checkout = __webpack_require__(470);
+	
+	var _Checkout2 = _interopRequireDefault(_Checkout);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24189,35 +24193,13 @@
 					'div',
 					{ id: 'app' },
 					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(_SignIn2.default, null)
+					_react2.default.createElement(_Checkout2.default, null)
 				);
 			}
 		}]);
 	
 		return App;
 	}(_react2.default.Component);
-	
-	// export default class App extends React.Component {
-	//
-	// 	constructor(props) {
-	// 		super(props);
-	// 	}
-	//
-	// 	render() {
-	//
-	// 		return (
-	// 			<div id="app" >
-	// 				<Navbar />
-	// 				{/*<AllProducts />
-	// 				<SingleProduct /> */}
-	// 				<ShoppingCart />
-	//
-	// 			</div>
-	// 		)
-	// 	}
-	//
-	// }
-	
 	
 	exports.default = App;
 
@@ -42959,7 +42941,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					_reactBootstrap.Navbar,
-					{ inverse: true, collapseOnSelect: true },
+					{ collapseOnSelect: true },
 					_react2.default.createElement(
 						_reactBootstrap.Navbar.Header,
 						null,
@@ -42979,55 +42961,16 @@
 						null,
 						_react2.default.createElement(
 							_reactBootstrap.Nav,
-							null,
-							_react2.default.createElement(
-								_reactBootstrap.NavItem,
-								{ eventKey: 1, href: '#' },
-								'Link'
-							),
-							_react2.default.createElement(
-								_reactBootstrap.NavItem,
-								{ eventKey: 2, href: '#' },
-								'Link'
-							),
-							_react2.default.createElement(
-								_reactBootstrap.NavDropdown,
-								{ eventKey: 3, title: 'Dropdown', id: 'basic-nav-dropdown' },
-								_react2.default.createElement(
-									_reactBootstrap.MenuItem,
-									{ eventKey: 3.1 },
-									'Action'
-								),
-								_react2.default.createElement(
-									_reactBootstrap.MenuItem,
-									{ eventKey: 3.2 },
-									'Another action'
-								),
-								_react2.default.createElement(
-									_reactBootstrap.MenuItem,
-									{ eventKey: 3.3 },
-									'Something else here'
-								),
-								_react2.default.createElement(_reactBootstrap.MenuItem, { divider: true }),
-								_react2.default.createElement(
-									_reactBootstrap.MenuItem,
-									{ eventKey: 3.3 },
-									'Separated link'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_reactBootstrap.Nav,
 							{ pullRight: true },
 							_react2.default.createElement(
 								_reactBootstrap.NavItem,
 								{ eventKey: 1, href: '#' },
-								'Link Right'
+								'Sign in'
 							),
 							_react2.default.createElement(
 								_reactBootstrap.NavItem,
 								{ eventKey: 2, href: '#' },
-								'Link Right'
+								'Shopping Cart'
 							)
 						)
 					)
@@ -43067,47 +43010,90 @@
 				{ className: 'show-grid' },
 				_react2.default.createElement(
 					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					{ xs: 12 },
 					_react2.default.createElement(
-						'p',
+						'h3',
 						null,
-						'Description'
+						' Sort by: '
 					),
 					_react2.default.createElement(
-						'p',
-						null,
-						'Price'
+						_reactBootstrap.DropdownButton,
+						{ title: 'Best Sellers', id: 'bg-nested-dropdown' },
+						_react2.default.createElement(
+							_reactBootstrap.MenuItem,
+							{ eventKey: '1' },
+							'Top Rated'
+						),
+						_react2.default.createElement(
+							_reactBootstrap.MenuItem,
+							{ eventKey: '2' },
+							'Price: Low to High '
+						),
+						_react2.default.createElement(
+							_reactBootstrap.MenuItem,
+							{ eventKey: '2' },
+							'Price: High to Low '
+						)
 					)
 				),
 				_react2.default.createElement(
 					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					{ xs: 6, md: 4 },
+					_react2.default.createElement('img', { src: 'product_photos/beach-buddies.jpg', height: '300px' }),
 					_react2.default.createElement(
-						'p',
+						'h3',
 						null,
-						'Description'
+						'Beach Buddies'
 					),
 					_react2.default.createElement(
 						'p',
 						null,
-						'Price'
+						'Imported from France'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'$7'
 					)
 				),
 				_react2.default.createElement(
 					_reactBootstrap.Col,
-					{ xs: 4 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' }),
+					{ xs: 6, md: 4 },
+					_react2.default.createElement('img', { src: 'product_photos/parisian-pineapples.jpg', height: '300px' }),
 					_react2.default.createElement(
-						'p',
+						'h3',
 						null,
-						'Description'
+						'Parisian Pineapplies'
 					),
 					_react2.default.createElement(
 						'p',
 						null,
-						'Price'
+						'Imported from Germany'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'$6.5'
+					)
+				),
+				_react2.default.createElement(
+					_reactBootstrap.Col,
+					{ xs: 6, md: 4 },
+					_react2.default.createElement('img', { src: 'product_photos/rose-bears.jpg', height: '300px' }),
+					_react2.default.createElement(
+						'h3',
+						null,
+						'Rose Bears'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'Made in the U.S.'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'$8'
 					)
 				)
 			)
@@ -43143,31 +43129,35 @@
 				{ className: 'show-grid' },
 				_react2.default.createElement(
 					_reactBootstrap.Col,
-					{ xs: 6 },
-					_react2.default.createElement('img', { src: 'http://placehold.it/350x150' })
+					{ xs: 12, md: 6 },
+					_react2.default.createElement('img', { src: 'product_photos/parisian-pineapples.jpg', height: '500px' })
 				),
 				_react2.default.createElement(
 					_reactBootstrap.Col,
-					{ xs: 6 },
+					{ xs: 12, md: 4 },
 					_react2.default.createElement(
-						'h1',
+						'h2',
 						null,
-						' Product Name '
+						' Parisian Pineapples '
 					),
 					_react2.default.createElement(
 						'p',
 						null,
-						'Price'
+						'$6.5'
 					),
 					_react2.default.createElement(
 						'p',
 						null,
-						'Description'
+						'From Paris with love, these darling baby pineapples are made with fresh pineapple pur\xE9e for an all-natural tropical treat.'
 					),
 					_react2.default.createElement(
-						_reactBootstrap.Button,
-						{ block: true },
-						'Add to bag'
+						_reactBootstrap.Col,
+						{ xs: 8 },
+						_react2.default.createElement(
+							_reactBootstrap.Button,
+							{ block: true },
+							'Add to bag'
+						)
 					)
 				)
 			)
@@ -43372,7 +43362,14 @@
 	
 	var _reactBootstrap = __webpack_require__(212);
 	
+	var _SignIn = __webpack_require__(469);
+	
+	var _SignIn2 = _interopRequireDefault(_SignIn);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// before checkout, users can either 1) log into their account (if they have one)
+	// or 2) continue checking out as a guest
 	
 	exports.default = function () {
 	  return _react2.default.createElement(
@@ -43383,58 +43380,485 @@
 	      { className: 'show-grid' },
 	      _react2.default.createElement(
 	        _reactBootstrap.Col,
-	        { xs: 4 },
+	        { xs: 12 },
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' Email '
+	          _reactBootstrap.Col,
+	          { xs: 12, md: 5 },
+	          _react2.default.createElement(_SignIn2.default, null)
+	        ),
+	        _react2.default.createElement(_reactBootstrap.Col, { md: 2 }),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { xs: 12, md: 5 },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            ' Continue as Guest '
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { type: 'submit' },
+	            ' Continue To Checkout As Guest '
+	          )
+	        )
+	      )
+	    )
+	  );
+	};
+
+/***/ },
+/* 469 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(212);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// component for users to log into their accounts
+	
+	exports.default = function () {
+	  return _react2.default.createElement(
+	    _reactBootstrap.Grid,
+	    null,
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      { className: 'show-grid' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        ' Sign In '
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 6 },
+	        _react2.default.createElement(
+	          _reactBootstrap.Form,
+	          { horizontal: true },
+	          _react2.default.createElement(
+	            _reactBootstrap.FormGroup,
+	            { controlId: 'formHorizontalEmail' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
+	              ' Email '
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { sm: 10 },
+	              _react2.default.createElement(_reactBootstrap.FormControl, { type: 'email', placeholder: 'Email' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.FormGroup,
+	            { controlId: 'formHorizontalPassword' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
+	              ' Password '
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { sm: 10 },
+	              _react2.default.createElement(_reactBootstrap.FormControl, { type: 'password', placeholder: 'Password' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.FormGroup,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { smOffset: 2, sm: 10 },
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { type: 'submit' },
+	                ' Sign in '
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Dont have an account? Create one!  '
+	              )
+	            )
+	          )
+	        )
+	      )
+	    )
+	  );
+	};
+
+/***/ },
+/* 470 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(212);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// this component contains all of the shipping, billing, and payment information
+	// associated with an order, and displays an order summary
+	
+	exports.default = function () {
+	  return _react2.default.createElement(
+	    _reactBootstrap.Form,
+	    { horizontal: true },
+	    _react2.default.createElement(
+	      _reactBootstrap.Col,
+	      { xs: 12, md: 5 },
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalFirstName' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { xs: 12 },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Billing Information'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' Password '
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'First Name:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'first-name', placeholder: 'First Name' })
 	        )
 	      ),
 	      _react2.default.createElement(
-	        'form',
-	        null,
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalLastName' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Last Name:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Last Name', placeholder: 'Last Name' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalAddress' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Street Address:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Street Address', placeholder: 'Street Address' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalAddress2' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Street Address (2):'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Street Address(2)', placeholder: 'Street Address' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalCity' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'City:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'City', placeholder: 'City' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalState' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'State/Province:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'State/Province', placeholder: 'State/Province' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalZipCode' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Zip/Postal Code:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Zip/Postal Code', placeholder: 'Zip/Postal Code' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalCountry' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Country:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Country', placeholder: 'Country' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalPhone' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Phone:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Phone', placeholder: 'Phone' })
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Col,
+	      { xs: 12, md: 5 },
+	      _react2.default.createElement(
+	        _reactBootstrap.Form,
+	        { horizontal: true },
 	        _react2.default.createElement(
 	          _reactBootstrap.FormGroup,
-	          {
-	            controlId: 'formBasicText',
-	            validationState: undefined.getValidationState()
-	          },
+	          { controlId: 'formHorizontalFirstName' },
 	          _react2.default.createElement(
-	            _reactBootstrap.ControlLabel,
-	            null,
-	            ' Email '
+	            _reactBootstrap.Col,
+	            { xs: 12 },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Shipping Information'
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Checkbox,
+	              null,
+	              'Same as Billing'
+	            )
 	          ),
-	          _react2.default.createElement(_reactBootstrap.FormControl, {
-	            type: 'text',
-	            value: undefined.state.value,
-	            placeholder: 'Enter email',
-	            onChange: undefined.handleChange
-	          }),
-	          _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'First Name:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'first-name', placeholder: 'First Name' })
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.FormGroup,
-	          {
-	            controlId: 'formBasicText',
-	            validationState: undefined.getValidationState()
-	          },
+	          { controlId: 'formHorizontalLastName' },
 	          _react2.default.createElement(
-	            _reactBootstrap.ControlLabel,
-	            null,
-	            ' Password '
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Last Name:'
 	          ),
-	          _react2.default.createElement(_reactBootstrap.FormControl, {
-	            type: 'text',
-	            value: undefined.state.value,
-	            placeholder: 'Enter password',
-	            onChange: undefined.handleChange
-	          }),
-	          _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null)
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Last Name', placeholder: 'Last Name' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalAddress' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Street Address:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Street Address', placeholder: 'Street Address' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalAddress2' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Street Address (2):'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Street Address(2)', placeholder: 'Street Address' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalCity' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'City:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'City', placeholder: 'City' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalState' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'State/Province:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'State/Province', placeholder: 'State/Province' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalZipCode' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Zip/Postal Code:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Zip/Postal Code', placeholder: 'Zip/Postal Code' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalCountry' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Country:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Country', placeholder: 'Country' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.FormGroup,
+	          { controlId: 'formHorizontalPhone' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	            'Phone:'
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { sm: 7 },
+	            _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Phone', placeholder: 'Phone' })
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Col,
+	      { xs: 12, md: 5 },
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalCreditCard' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { xs: 12 },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Payment'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Credit Card Number:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Credit Card Number', placeholder: 'Credit Card Number' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        { controlId: 'formHorizontalExpiration' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { componentClass: _reactBootstrap.ControlLabel, sm: 5 },
+	          'Expiration Date:'
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { sm: 7 },
+	          _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Expiration Date', placeholder: 'Expiration Date' })
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.FormGroup,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { smOffset: 2, sm: 10 },
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { type: 'submit' },
+	            'Confirm Purchase'
+	          )
 	        )
 	      )
 	    )
