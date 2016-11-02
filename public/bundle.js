@@ -24193,7 +24193,7 @@
 					'div',
 					{ id: 'app' },
 					_react2.default.createElement(_Navbar2.default, null),
-					_react2.default.createElement(_Checkout2.default, null)
+					_react2.default.createElement(_AllProducts2.default, null)
 				);
 			}
 		}]);
@@ -43859,6 +43859,70 @@
 	            { type: 'submit' },
 	            'Confirm Purchase'
 	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'formHorizontalOrderReview' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { xs: 12 },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Order Review'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
+	        'Order Cost:'
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { sm: 10 },
+	        _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Order Cost', placeholder: '$20.00' })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'formHorizontalTaxShipping' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
+	        'Tax + Shipping:'
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { sm: 10 },
+	        _react2.default.createElement(_reactBootstrap.FormControl, { type: 'TaxShipping', placeholder: '10% + $5.99' })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      { controlId: 'formHorizontalSubtotal' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { componentClass: _reactBootstrap.ControlLabel, sm: 2 },
+	        'Subtotal:'
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { sm: 10 },
+	        _react2.default.createElement(_reactBootstrap.FormControl, { type: 'Subtotal', placeholder: '$27.99' })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.FormGroup,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { smOffset: 2, sm: 10 },
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { type: 'submit' },
+	          'Purchase'
 	        )
 	      )
 	    )

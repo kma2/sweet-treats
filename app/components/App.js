@@ -25,7 +25,7 @@ export default class App extends React.Component {
 				<NavbarComponent />
 				{/*<AllProducts />
 				<SingleProduct /> */}
-				<Checkout />
+				<AllProducts />
 
 			</div>
 		)

@@ -219,5 +219,45 @@ export default () => (
       </FormGroup>
     </Col>
 
+    {/* --------ORDER SUMMARY SECTION -----*/}
+
+     <FormGroup controlId="formHorizontalOrderReview">
+      <Col xs={12}>
+      	<h3>Order Review</h3>
+  	  </Col>
+      <Col componentClass={ControlLabel} sm={2}>
+        Order Cost:
+      </Col>
+      <Col sm={10}>
+        <FormControl type="Order Cost" placeholder="$20.00" />
+      </Col>
+    </FormGroup>
+
+    <FormGroup controlId="formHorizontalTaxShipping">
+      <Col componentClass={ControlLabel} sm={2}>
+        Tax + Shipping:
+      </Col>
+      <Col sm={10}>
+        <FormControl type="TaxShipping" placeholder="10% + $5.99" />
+      </Col>
+    </FormGroup>
+
+    <FormGroup controlId="formHorizontalSubtotal">
+      <Col componentClass={ControlLabel} sm={2}>
+        Subtotal:
+      </Col>
+      <Col sm={10}>
+        <FormControl type="Subtotal" placeholder="$27.99" />
+      </Col>
+    </FormGroup>
+
+    <FormGroup>
+      <Col smOffset={2} sm={10}>
+        <Button type="submit">
+          Purchase
+        </Button>
+      </Col>
+    </FormGroup>
   </Form>
+
 )
