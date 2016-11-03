@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Grid, Row, Col, DropdownButton, MenuItem} from 'react-bootstrap';
+import {Grid, Row, Col, DropdownButton, MenuItem, FormGroup, FormControl, Button, Navbar} from 'react-bootstrap';
 
 
 export default () => (
@@ -18,7 +18,22 @@ export default () => (
 							<MenuItem eventKey="2">Price: High to Low </MenuItem>
 						</DropdownButton>
 					</Col>
+
+					<Col xs={4}> </Col>
+				{/* Search bar with submit */}
+					<Col xs={4}>
+
+					<Navbar.Form pullLeft>
+				        <FormGroup>
+				          <FormControl type="text" placeholder="Search" />
+				        </FormGroup>
+				        {' '}
+				        <Button type="submit">Search</Button>
+				    </Navbar.Form>
+				
+					</Col>
 				</Col>
+				
 
 				{/* Temporary, hard-coded products */}
 				<Col xs={6} md={4}>

@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
 				{/*<AllProducts />
 				<SingleProduct /> */}
-				<SingleProductContainer />
+				<AllProductsContainer />
 
 			</div>
 		)
