@@ -1,10 +1,11 @@
 const db = require('APP/db')
 const Candy =  require('APP/db/models/candy')
+const Order =  require('APP/db/models/order')
 const Promise = require('bluebird')
 const Sequelize = require('sequelize')
 const app = require('APP')
 
-  const arr = [
+  const arrCandy = [
       {name: 'Stout Pints', short_description: 'Imported from Germany', description: 'A combination of roasty chocolate and creamy vanilla flavor', price: 7.5, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../public/stout-pints.jpg'},
       {name: 'Red Velvet Caramels', short_description: 'Made in the U.S.', description: 'Rich red velvet cake is blended with smooth artisan caramel, then dipped in a tangy cream cheese frosting.', price: 6, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../public/red-velvet_caramels.jpg'},
       {name: 'Pastel Pearls', short_description: 'Imported from Greece', description: 'Tiny milk chocolate droplets are dipped in a delicate sugar shell, in soft and sweet pastel hues. Perfect for decorating cakes, cupcakes, ice cream sundaes and more!', price: 7, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../public/pastel-pearls.jpg'},
@@ -27,11 +28,14 @@ const app = require('APP')
       {name: 'Sour Fizz Cola Cuties', short_description: 'Imported from Germany', description: 'These all-natural gummy cola bottles have a tantalizing twist of fizzy sour flavor.', price: 7.5, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../public/sour-fizz-cola-cuties.jpg'},
       {name: 'Beary Smoothie', short_description: 'Imported from Portugal', description: 'Sweet berry juice is blended with creamy frozen yogurt in these bear-shaped, berrylicious bites.', price: 7, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../public/beary-smoothie.jpg'}
   ]
+  const arrOrder = [{}]
 
 db.didSync
   .then(() => db.sync({force: true}))
   .then(function(){
-    arr.forEach(e => Candy.create(e))
+    arrCandy.forEach(e => Candy.create(e))
+  }).then(() => {
+    arrOrder.forEach(e => Order.create(e))
   })
   .catch(error => console.error(error))    
 

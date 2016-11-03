@@ -38,24 +38,15 @@ describe('/api/users', () => {
   //   )
   // })
 })
+//const fakeCandy = {name: 'Test', short_description: 'Test', description: 'Test', price: 7.5, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../Test/Test'}
+
 describe('/api/candy',() => {
     describe('test creating candy',() => {
-      var order = Order.create({})
-      var candy = Candy.create({
-        name:'Candy test',
-        photo:'www.examplePhoto.com',
-        description:'Test description',
-        quantity:50,
-        tags:['tag1','tag2'],
-        price:3.50
-      })
-      console.log(candy)
-      var objToSend = {order:order,candy:candy}
-      it('Creates right shit',() => {
+      it('adds candy to order',function(){
+        const fakeCandy = {'name': 'Test', 'short_description': 'Test', 'description': 'Test', 'price': 7.5, 'quantity': 500, 'tags': [], 'numOrdered': 0, 'status': 'Available', 'rating': 0, 'review': [], 'photo': '../Test/Test'}
         request(app)
           .post('/api/candy')
-          .send(objToSend)
+          .send(fakeCandy)
       })
     })
 })
-"I'm looking for a Software Engineering internship during either the "
