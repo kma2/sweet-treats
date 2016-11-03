@@ -51,3 +51,36 @@ body {
 .product_price {
   font-size: 1.3em;
 }
+
+
+/* ===== SHOPPING CART ===== */
+
+.cart_items {
+  padding-top: 3%;
+}
+
+.cart_item_photo {
+  height: 22vh;
+}
+
+.remove_button {
+  border-radius: 50%;
+}
+
+.cart_heading {
+  padding-bottom: 1%;
+}
+
+/* cart headings include product, price, quantity, and subtotal */
+.cart_heading_field {
+  font-size: 1.7em;
+}
+
+/* each specific item in a cart */
+.cart_item_field {
+  font-size: 1.3em;
+}
+
+.cart_item_description {
+  font-size: 0.9em;
+}
