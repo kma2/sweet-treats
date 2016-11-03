@@ -42,8 +42,6 @@ export default () => (
 				<Col xs={12}>
 					<CartItem />
 				</Col>
-			</Row>
-			<Row className="show-grid">
 				<Col xs={12}>
 					<CartItem />
 				</Col>
