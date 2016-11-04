@@ -27,7 +27,8 @@ const Candy = db.define('candy',{
   },
   tags:{
     type:Sequelize.ARRAY(Sequelize.STRING),
-    allowNull:false 
+    // allowNull:false
+    defaultValue:[] 
   },
   price:{
     type:Sequelize.FLOAT,
