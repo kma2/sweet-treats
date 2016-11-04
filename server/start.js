@@ -26,6 +26,9 @@ module.exports = app
     keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
   }))
 
+  //sessions added by Katy & Brandon
+  //above does it for us but what about duration???? assuming keys are secrets
+
   // Body parsing middleware
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
