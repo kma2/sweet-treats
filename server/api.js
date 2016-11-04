@@ -12,7 +12,6 @@ const User = require('APP/db/models/user')
   Admin routes 
   User routes 
   Order routes 
-  Fix candy bs
 */ 
 
 
@@ -40,8 +39,8 @@ api
   //delete a specific candy from an order
   .delete('/candy/:id',(req,res) =>{
     Order.findById(1)
-    .then((order) =>{
-      order.removeCandy(req.body)
+    .then(order =>{
+      Candy.findOne()
     })
   })
   //Update a specific candy in an order
