@@ -4,11 +4,13 @@ import { Col } from 'react-bootstrap';
 
 //add fluid props with value true to add container-fluid class
 
-import Navbar from './Navbar';
+import NavbarComponent from './Navbar';
 import AllProducts from './AllProducts'
 import SingleProduct from './SingleProduct';
 import ShoppingCart from './ShoppingCart';
-import SignIn from './SignIn';
+import SignInOrContinueAsGuest from './SignInOrContinueAsGuest';
+import Checkout from './Checkout';
+
 
 export default class App extends React.Component {
 
@@ -20,35 +22,13 @@ export default class App extends React.Component {
 
 		return (
 			<div id="app" >
-				<Navbar />
+				<NavbarComponent />
 				{/*<AllProducts />
 				<SingleProduct /> */}
-				<SignIn />
+				<AllProducts />
 
 			</div>
 		)
 	}
 
 }
-
-
-// export default class App extends React.Component {
-//
-// 	constructor(props) {
-// 		super(props);
-// 	}
-//
-// 	render() {
-//
-// 		return (
-// 			<div id="app" >
-// 				<Navbar />
-// 				{/*<AllProducts />
-// 				<SingleProduct /> */}
-// 				<ShoppingCart />
-//
-// 			</div>
-// 		)
-// 	}
-//
-// }

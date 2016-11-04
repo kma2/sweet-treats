@@ -62,3 +62,5 @@ db.didSync
 
 
 //  {"name":"Stout Pints","short_description": "Imported from Germany", "description": "A combination of roasty chocolate and creamy vanilla flavor", "price": 7.5, "quantity": 500, "tags": [], "numOrdered": 0, "status": "Available", "rating": 0, "review": [], "photo": "../public/stout-pints.jpg"}
+
+
