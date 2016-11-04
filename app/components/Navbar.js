@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar, NavItem, MenuItem, Nav, NavDropdown} from 'react-bootstrap';
+import {Navbar, NavItem, MenuItem, Nav, NavDropdown, ButtonGroup, Button, DropdownButton} from 'react-bootstrap';
 
 export default class NavbarComponent extends React.Component {
 	constructor(props) {
@@ -11,18 +11,17 @@ export default class NavbarComponent extends React.Component {
 			  <Navbar collapseOnSelect>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        <a href="#">Candy Store</a>
+			        <a href="#">sweet treats</a>
 			      </Navbar.Brand>
 			      <Navbar.Toggle />
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav pullRight>
 			        <NavItem eventKey={1} href="#">Sign in</NavItem>
-			        <NavItem eventKey={2} href="#">Shopping Cart</NavItem>
+			        <NavItem eventKey={2} href="#">Shopping Cart (1)</NavItem>
 			      </Nav>
 			    </Navbar.Collapse>
-			  </Navbar>
+				</Navbar>
 		)
 	}
-
 }

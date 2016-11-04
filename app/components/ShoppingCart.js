@@ -5,37 +5,61 @@ import CartItem from './CartItem';
 
 // this component contains all the cart items in a user's shopping cart
 
-export default () => (	
+export default () => (
 	<Grid>
 		<Row className="show-grid">
-			<Col xs={12}> 
+			<Col xs={12}>
 				<h1> Shopping Cart </h1>
 			</Col>
 		</Row>
-		<Row className="show-grid">
-			<Col xs={12}> 
-				<CartItem />
-			</Col>
-			<Col xs={12}> 
-				<CartItem />
-			</Col>
-			<Col xs={12}> 
-				<CartItem />
-			</Col>
-		</Row>
-		<Row className="show-grid">
-			<Col xs={9}> 
-				<h2> Subtotal </h2> 
-			</Col>
-			<Col xs={3}> 
-				<h2> $$$ </h2>  
-			</Col>
-		</Row>
-		<Row className="show-grid">
-			<Col xs={9}></Col>
-			<Col xs={3}>
-				<Button block>Checkout</Button>
-			</Col>
-		</Row>
+
+		<div className="cart_items">
+
+			{/* Shopping cart fields */}
+			<Row className="show-grid">
+				<Col xs={12} className="cart_heading">
+					<Col xs={2}>
+					</Col>
+					<Col xs={2}>
+						<p className="cart_heading_field"> Product </p>
+					</Col>
+					<Col xs={2}>
+						<p className="cart_heading_field"> Price </p>
+					</Col>
+					<Col xs={2}>
+						<p className="cart_heading_field"> Quantity </p>
+					</Col>
+					<Col xs={2}>
+						<p className="cart_heading_field"> Subtotal </p>
+					</Col>
+					<Col xs={2}>
+					</Col>
+				</Col>
+			</Row>
+
+			{/* TEMPORARY: hard-coded shopping cart items */}
+			<Row className="show-grid">
+				<Col xs={12}>
+					<CartItem />
+				</Col>
+				<Col xs={12}>
+					<CartItem />
+				</Col>
+			</Row>
+
+			{/* Total cost */}
+			<Row className="show-grid">
+				<Col xs={8} className="cart_item_heading">
+				</Col>
+				<Col xs={2} className="cart_item_field">
+					<p className="cart_item_heading"> Total </p>
+				</Col>
+				<Col xs={2} className="cart_item_field">
+					<p className="cart_item_heading"> $30 </p>
+				</Col>
+			</Row>
+
+		</div>
+
 	</Grid>
 )
