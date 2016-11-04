@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-
+//WE ADDED STATUS
 const User = db.define('users', {
   name: Sequelize.STRING,  
   email: {
@@ -13,12 +13,15 @@ const User = db.define('users', {
 			notEmpty: true,
 		}
   },
-
+  status:{
+    type: Sequelize.STRING,
+    defaultValue: 'Customer'
+  },
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
 	password: Sequelize.VIRTUAL
 }, {
-	indexes: [{fields: ['email'], unique: true,}],
+	indexes: [{fields: ['email'], unique: true}],
   hooks: {
     beforeCreate: setEmailAndPassword,
     beforeUpdate: setEmailAndPassword,
