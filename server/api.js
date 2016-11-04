@@ -14,8 +14,6 @@ const User = require('APP/db/models/user')
   Order routes 
 */ 
 
-
-
 api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
   .use('/auth', require('./auth'))
@@ -30,6 +28,7 @@ api
         //Time to associate them 
         //candy meet order, order meet candy 
         order.addCandy(candy)
+        res.sendStatus(204)
       })
     }).catch((err) =>{
       console.log("Couldn't find Candy/Order")
@@ -37,10 +36,17 @@ api
     })
   })
   //delete a specific candy from an order
-  .delete('/candy/:id',(req,res) =>{
+  .delete('/candy/:id',(req,res,next) =>{
     Order.findById(1)
     .then(order =>{
-      Candy.findOne()
+      Candy.findById(req.params.id)
+      .then(candy =>{
+        order.removeCandy(candy)
+        res.sendStatus(204)
+      })
+    }).catch((err) =>{
+      console.log('cant find candy/order to remove ')
+      next(err)
     })
   })
   //Update a specific candy in an order
@@ -63,7 +69,7 @@ api
       res.send(candy)
     })
   })
-  //Get a user by Id
+  //Get a user by Id (NEEDS TO BE UPDATED TO INCLUDE AUTH)
   .get('/user/:id',(req,res) =>{
     User.findById(req.params.id)
     .then(user =>{
@@ -86,6 +92,60 @@ api
     User.create(req.body)
     .then((user) =>{
       res.send(user)
+    })
+  })
+  //Delete a user 
+  .delete('/user/:id',(req,res) =>{ 
+    User.findById(req.params.id)
+    .then(user =>{
+      user.destroy()
+    }).then(user =>{
+      console.log("DELETED ",user)
+      res.sendStatus(204)
+    })
+  })
+
+  /*----------ADMIN ROUTES----------*/
+  /*
+    ADMIN stuff 
+      - Add candy to store tick
+      - Set candy status to new status tick 
+      - RUD Users  
+  */
+  //CANDY
+  .post('/admin/candy',(req,res) =>{ 
+    Candy.create(req.body)
+    .then((candy) =>{
+      console.log("Created candy ",candy.name)
+      res.sendStatus(204)
+    })
+  })
+  .put('/admin/candy/:id/:status',(req,res) =>{ 
+    Candy.findById(req.params.id)
+    .then((candy) =>{
+      candy.update({status:req.params.status})
+    }).then((candy) =>{
+      console.log("Updated candy status to ",candy.status)
+      res.sendStatus(204)
+    })
+  })
+  //USER
+  .put('/admin/candy/:id/:status',(req,res) =>{ 
+    User.findById(req.params.id)
+    .then(user =>{
+      user.update({status:req.params.status})
+    }).then(user =>{
+      console.log("Updated user status to ",user.status)
+      res.sendStatus(204)
+    })
+  })
+  .delete('/admin/user/:id',(req,res) =>{ 
+    User.findById(req.params.id)
+    .then(user =>{
+      user.destroy()
+    }).then(user =>{
+      console.log("DELETED ",user)
+      res.sendStatus(204)
     })
   })
 
