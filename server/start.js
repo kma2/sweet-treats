@@ -4,6 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
 const passport = require('passport')
+const User = require('../db/models/user');
+const session = require('client-sessions');
 
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
@@ -21,10 +23,18 @@ if (!pkg.isProduction) {
 
 module.exports = app
   // We'll store the whole session in a cookie
-  .use(require('cookie-session') ({
-    name: 'session',
-    keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
+  // .use(require('cookie-session') ({
+  //   name: 'session',
+  //   keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
+  // }))
+  .use(session({
+    cookieName: 'session',
+    secret: 'lakjdfoiasnalsjlafglakvlasmcoim93849384750734985km8cheerios',
+    duration: 60*60*1000
   }))
+
+  //sessions added by Katy & Brandon
+  //above does it for us but what about duration???? assuming keys are secret
 
   // Body parsing middleware
   .use(bodyParser.urlencoded({ extended: true }))
