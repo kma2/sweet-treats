@@ -4,6 +4,7 @@ import {Grid, Row, Col, DropdownButton, MenuItem, FormGroup, FormControl, Button
 
 
 export default () => (
+	<div>
 		<Grid>
 			<Row className="show-grid">
 
@@ -30,10 +31,10 @@ export default () => (
 				        {' '}
 				        <Button type="submit">Search</Button>
 				    </Navbar.Form>
-				
+
 					</Col>
 				</Col>
-				
+
 
 				{/* Temporary, hard-coded products */}
 				<Col xs={6} md={4}>
@@ -70,4 +71,5 @@ export default () => (
 
 			</Row>
 		</Grid>
+	</div>
 )

@@ -5,6 +5,7 @@ import { Col } from 'react-bootstrap';
 //add fluid props with value true to add container-fluid class
 
 import NavbarComponent from './Navbar';
+import AllProductsContainer from '../containers/AllProductsContainer';
 
 export default class App extends React.Component {
 
@@ -16,6 +17,7 @@ export default class App extends React.Component {
 		return (
 			<div id="app" >
 				<NavbarComponent />
+				{ this.props.children }
 			</div>
 		)
 	}
