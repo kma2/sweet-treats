@@ -16,8 +16,12 @@ api
   /*----------CANDY ROUTES----------*/
 
   // adding a candy to an order
-  .post('/candy/:id',(req,res,next) => {
-    Order.findById(1)
+  .post('/candy/:id',(req,res,next) => { 
+    Order.findOne({
+      where:{
+        status:'pending'
+      }
+    })
     .then(order =>{
       Candy.findById(req.params.id)
       .then(candy =>{
@@ -45,23 +49,24 @@ api
     })
   })
 
-
-  //Fake route real quick
-  .put('/fake',(req,res) =>{
+  //Fake route real quick (fix session order id shit)
+  .put('/candy/quantity/:type/:id',(req,res) =>{
     CandyOrder.findOne({
       where:{
-        candy_id:1,
+        candy_id:req.params.id,
         order_id:1
       }
     })
     .then((found) =>{
       // console.log(found)
-      found.decrement()
+      req.params.type === 'increment' ? found.increment() : found.decrement()
       res.sendStatus(204)
+    }).catch(err =>{
+      res.sendStatus(207)
     })
   })
 
-  // get all candies
+  // get all candy
   .get('/candy',(req,res) =>{
     Candy.findAll({})
     .then((candies) =>{
