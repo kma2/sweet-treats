@@ -82,7 +82,7 @@ api
     User.findById(req.params.id)
     .then(user =>{
       res.send(user)
-    })
+    }) 
   })
   
   //USER 
@@ -146,7 +146,22 @@ api
     })
   })
 
-
+  //Order 
+  //Get order
+  .get('/order/:id',(req,res) =>{
+    Order.findById(req.params.id)
+    .then(order =>{
+      res.send(order)
+    })
+  }) 
+  
+  //Update order
+  .put('/order/:id',(req,res) =>{
+    Order.findById(req.params.id)
+    .then(order =>{
+      order.update(req.body)
+    })
+  }) 
 
 
   
