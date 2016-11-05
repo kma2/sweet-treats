@@ -5,6 +5,7 @@ const api = module.exports = require('express').Router()
 const Candy = require('APP/db/models/candy')
 const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
+const CandyOrder = require('APP/db/models/candyOrders')
 const bcrypt = require('bcrypt')
 
 api
@@ -44,13 +45,21 @@ api
     })
   })
 
-  //Update a specific candy in an order
-  // .put('/candy',(req,res) =>{
-  //   Order.findById(1)
-  //   .then(order =>{
-  //     order.setCandy(Candy,req.body)
-  //   })
-  // })
+
+  //Fake route real quick
+  .put('/fake',(req,res) =>{
+    CandyOrder.findOne({
+      where:{
+        candy_id:1,
+        order_id:1
+      }
+    })
+    .then((found) =>{
+      // console.log(found)
+      found.decrement()
+      res.sendStatus(204)
+    })
+  })
 
   // get all candies
   .get('/candy',(req,res) =>{

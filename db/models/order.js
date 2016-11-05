@@ -5,7 +5,7 @@ const db = require('APP/db')
 const Order = db.define('order',{
   status:{
     type:Sequelize.STRING,
-    defaultValue:'unordered'
+    defaultValue:'pending'
   }
 },{
   instanceMethods:{
@@ -17,3 +17,5 @@ const Order = db.define('order',{
 })
 
 module.exports = Order
+
+

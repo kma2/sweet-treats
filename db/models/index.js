@@ -7,9 +7,10 @@
 const User = require('./user')
 const Candy = require('./candy')
 const Order = require('./order')
+const CandyOrder = require('./candyOrders')
 
-Order.belongsToMany(Candy, {through:'candyOrders'})
-Candy.belongsToMany(Order, {through:'candyOrders'})
+Order.belongsToMany(Candy, {through:CandyOrder})
+Candy.belongsToMany(Order, {through:CandyOrder})
 // User.belongsToMany(Order,{through:'userOrders'})
 
 
