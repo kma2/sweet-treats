@@ -5,6 +5,7 @@ const api = module.exports = require('express').Router()
 const Candy = require('APP/db/models/candy')
 const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
+// const UserOrders = require('APP/db/models/UserOrders')
 const bcrypt = require('bcrypt')
 
 api
@@ -54,6 +55,10 @@ api
 
   // get all candies
   .get('/candy',(req,res) =>{
+    if (!req.session.cart) {
+      req.session.cart = {};
+      req.session.cart.order = {};
+    }
     Candy.findAll({})
     .then((candies) =>{
       res.send(candies)
@@ -141,27 +146,36 @@ api
     })
   })
 
+  /*----------ADMIN ROUTES----------*/
 
-  /*----------ORDER ROUTES----------*/
+  // get all orders of a particular user
+  .get('/admin/:userId/order', (req, res) => {
+    Order.findAll({
+      where: {
+        user_id : req.params.userId
+      },
+      include: [{model: userOrders}]
+    })
+    .then(orders => res.send(orders))
+    .catch(next)
+  })
 
-  // get an order
-  .get('/order/:id',(req,res) =>{
-    Order.findById(req.params.id)
+  //get a specific order 
+  .get('/order/:orderId',(req,res) =>{
+    Order.findById(req.params.orderId)
     .then(order =>{
       res.send(order)
     })
   })
 
-  // update an order
-  .put('/order/:id',(req,res) =>{
-    Order.findById(req.params.id)
+  // update an order to change status(admin)
+  .put('/admin/order/:userId',(req,res) =>{
+    Order.findById(req.params.userId)
     .then(order =>{
       order.update(req.body)
     })
   })
 
-
-  /*----------ADMIN ROUTES----------*/
 
   // create a new candy
   .post('/admin/candy',(req,res) =>{
@@ -203,6 +217,15 @@ api
       console.log("DELETED ",user)
       res.sendStatus(204)
     })
+  })
+
+  /*----------CHECKOUT ROUTE----------*/
+
+  .get('/checkout', (req, res) => {
+    if (req.session.user) {
+
+      Object.assign({}, req.session.cart.order, req.session.user)
+    }
   })
 
 
