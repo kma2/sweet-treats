@@ -6,6 +6,7 @@ const Candy = require('APP/db/models/candy')
 const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
 // const UserOrders = require('APP/db/models/UserOrders')
+const CandyOrder = require('APP/db/models/candyOrders')
 const bcrypt = require('bcrypt')
 
 api
@@ -16,8 +17,12 @@ api
   /*----------CANDY ROUTES----------*/
 
   // adding a candy to an order
-  .post('/candy/:id',(req,res,next) => {
-    Order.findById(1)
+  .post('/candy/:id',(req,res,next) => { 
+    Order.findOne({
+      where:{
+        status:'pending'
+      }
+    })
     .then(order =>{
       Candy.findById(req.params.id)
       .then(candy =>{
@@ -45,15 +50,24 @@ api
     })
   })
 
-  //Update a specific candy in an order
-  // .put('/candy',(req,res) =>{
-  //   Order.findById(1)
-  //   .then(order =>{
-  //     order.setCandy(Candy,req.body)
-  //   })
-  // })
+  //Fake route real quick (fix session order id shit)
+  .put('/candy/quantity/:type/:id',(req,res) =>{
+    CandyOrder.findOne({
+      where:{
+        candy_id:req.params.id,
+        order_id:1
+      }
+    })
+    .then((found) =>{
+      // console.log(found)
+      req.params.type === 'increment' ? found.increment() : found.decrement()
+      res.sendStatus(204)
+    }).catch(err =>{
+      res.sendStatus(207)
+    })
+  })
 
-  // get all candies
+  // get all candy
   .get('/candy',(req,res) =>{
     if (!req.session.cart) {
       req.session.cart = {};

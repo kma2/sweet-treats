@@ -8,13 +8,10 @@ const User = require('./user')
 const Candy = require('./candy')
 const Order = require('./order')
 const UserOrder = require('./UserOrder')
-//**THIS PRINTS OUT AN EMPTY OBJECT, SHOULD PRINT MODEL NAME (USERS)**//
-console.log("model is ", User)
+const CandyOrder = require('./candyOrders')
 
-Order.belongsToMany(Candy, {through:'candyOrders'})
-Candy.belongsToMany(Order, {through:'candyOrders'})
-// User.belongsToMany(Order,{through: UserOrder})
-
-
+Order.belongsToMany(Candy, {through:CandyOrder})
+Candy.belongsToMany(Order, {through:CandyOrder})
+// User.belongsToMany(Order,{through:'userOrders'})
 
 module.exports = {User,Candy,Order}
