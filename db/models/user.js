@@ -28,6 +28,7 @@ const User = db.define('users', {
   },
   instanceMethods: {
     authenticate(plaintext) {
+      console.log('password',plaintext)
       return new Promise((resolve, reject) =>
         bcrypt.compare(plaintext, this.password_digest,
           (err, result) =>

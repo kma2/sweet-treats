@@ -5,6 +5,7 @@ const api = module.exports = require('express').Router()
 const Candy = require('APP/db/models/candy')
 const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
+const bcrypt = require('bcrypt')
 // const fakeCandy = {name: 'Test', short_description: 'Test', description: 'Test', price: 7.5, quantity: 500, tags: [], numOrdered: 0, status: 'Available', rating: 0, review: [], photo: '../Test/Test'}
 
 //ROUTES TO DO 
@@ -69,6 +70,13 @@ api
       res.send(candy)
     })
   })
+
+
+  //logout
+   .get('/user/logout',(req,res) =>{
+     req.session = null
+     res.sendStatus(204)
+  }) 
   //Get a user by Id (NEEDS TO BE UPDATED TO INCLUDE AUTH)
   .get('/user/:id',(req,res) =>{
     User.findById(req.params.id)
@@ -76,7 +84,10 @@ api
       res.send(user)
     })
   })
+  
+  //USER 
   //Update a user 
+ 
   .put('/user/:id',(req,res) =>{ 
     User.update(req.body,{
       where:{
@@ -85,13 +96,6 @@ api
       returning: true
     }).then(() =>{
       res.sendStatus(204)
-    })
-  })
-  //Add a user
-  .post('/user',(req,res) =>{
-    User.create(req.body)
-    .then((user) =>{
-      res.send(user)
     })
   })
   //Delete a user 
@@ -104,7 +108,59 @@ api
       res.sendStatus(204)
     })
   })
+  //Register them users bruh
+  .post('/user/register',(req,res) =>{
+    User.create(req.body)
+    .then(user =>{
+      req.session.user = user 
+      console.log("created user")
+      console.log('session',req.session)
+      // res.sendStatus(204)
+      res.send(user)
+    })
+  })
+  //Log in 
+  .post('/user/login',(req,res) =>{
+    User.findOne({
+      where:{
+        email:req.body.email
+      }
+    }).then(user =>{
+      //Auth
+      user.authenticate(req.body.password)
+      .then((binary) =>{
+        if(binary){
+          console.log(req.body.password)
+          console.log('logged in')
+          req.session.user = user 
+          res.sendStatus(200)
+        }
+        else{
+          res.sendStatus(404)
+        }
+      })
+    }).catch(err =>{
+      //Redirects
+      console.log('wrong password m8')
+      res.sendStatus(401)
+    })
+  })
 
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   /*----------ADMIN ROUTES----------*/
   /*
     ADMIN stuff 
