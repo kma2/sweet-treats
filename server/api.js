@@ -9,18 +9,16 @@ const User = require('APP/db/models/user')
 const CandyOrder = require('APP/db/models/candyOrders')
 const bcrypt = require('bcrypt')
 const addCandy = function(order,candy){
-  // var shouldAdd = true
-  // for(var i in order.candy){
-  //   if(order[i].candy === candy.id){
-  //     console.log()
-  //     shouldAdd = false
-  //   }
-  // }
-  // if(shouldAdd){
-  //   order.push({candy:candy,quantity:1})
-  // }
-  
-  console.log('order ',order)
+  var shouldAdd = true
+  for(var i in order){
+    if(order[i].candy.id === candy.id){
+      order[i].quantity += 1
+      shouldAdd = false
+    }
+  }
+  if(shouldAdd){
+    order.push({candy:candy,quantity:1})
+  }
   return order
 }
 api
