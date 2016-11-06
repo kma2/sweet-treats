@@ -8,15 +8,22 @@ const User = require('APP/db/models/user')
 // const UserOrders = require('APP/db/models/UserOrders')
 const CandyOrder = require('APP/db/models/candyOrders')
 const bcrypt = require('bcrypt')
-const addCandy = function(order,candy){
+const addCandy = function(order,candy,decrement){ 
   var shouldAdd = true
   for(var i in order){
     if(order[i].candy.id === candy.id){
-      order[i].quantity += 1
-      shouldAdd = false
+      if(decrement === 'decrement' && order[i].quantity === 1){
+        console.log("here")
+        order.splice(i,1)
+        shouldAdd = false
+      }
+      else{
+        decrement === 'decrement' ? order[i].quantity -= 1 : order[i].quantity += 1
+        shouldAdd = false
+      }
     }
   }
-  if(shouldAdd){
+  if(shouldAdd && decrement !== 'decrement'){
     order.push({candy:candy,quantity:1})
   }
   return order
@@ -30,7 +37,6 @@ api
 
   // adding a candy to an order (NEED TO FIX USERORDERS TABLE)
   .post('/candy/:id',(req,res,next) => { 
-    console.log(req.session)
     if(req.session.user){
       Order.findOne({
         where:{
@@ -60,14 +66,11 @@ api
       }).then(candy =>{
         console.log('before',req.session.cart)
         req.session.cart.order = addCandy(req.session.cart.order,candy)
-        console.log('after',req.session.cart)
+        // console.log('after',req.session.cart)
         res.sendStatus(204)
       }).catch(err =>{
         res.sendStatus(999)
       })
-      //Add them to local state order 
-        //If candy exists do increment shit
-      // req.session.cart.order = Object.assign({},req.session.cart.order,newCandy)
     }
   })
 
@@ -88,19 +91,37 @@ api
 
   //Fake route real quick (fix session order id shit)
   .put('/candy/quantity/:type/:id',(req,res) =>{
-    CandyOrder.findOne({
-      where:{
-        candy_id:req.params.id,
-        order_id:1
-      }
-    })
-    .then((found) =>{
-      // console.log(found)
-      req.params.type === 'increment' ? found.increment() : found.decrement()
-      res.sendStatus(204)
-    }).catch(err =>{
-      res.sendStatus(207)
-    })
+    if(req.session.user){
+      CandyOrder.findOne({
+        where:{
+          candy_id:req.params.id,
+          order_id:1
+        }
+      })
+      .then((found) =>{
+        // console.log(found)
+        req.params.type === 'increment' ? found.increment() : found.decrement()
+        res.sendStatus(204)
+      }).catch(err =>{
+        res.sendStatus(207)
+      })
+    }
+    else{ 
+      console.log('Not logged in / Unauth')
+      //Query for candy 
+      Candy.findOne({
+        where:{
+          id:req.params.id
+        }
+      }).then(candy =>{
+        console.log(req.params.type)
+        req.session.cart.order = addCandy(req.session.cart.order,candy,req.params.type)
+        console.log('after',req.session.cart)
+        res.sendStatus(204)
+      }).catch(err =>{
+        res.sendStatus(999)
+      })
+    }
   })
 
   // get all candy
@@ -123,12 +144,11 @@ api
     })
   })
 
-
   /*----------USER ROUTES----------*/
 
   // user can logout
    .get('/user/logout',(req,res) =>{
-     req.session.destroy()
+     req.session.destroy() 
      res.sendStatus(204)
   })
 
@@ -226,7 +246,6 @@ api
     })
   })
 
-
   // create a new candy
   .post('/admin/candy',(req,res) =>{
     Candy.create(req.body)
@@ -273,8 +292,11 @@ api
 
   .get('/checkout', (req, res) => {
     if (req.session.user) {
-
-      Object.assign({}, req.session.cart.order, req.session.user)
+      // Object.assign({}, req.session.cart.order, req.session.user)
+      console.log("Final Order",req.session.cart)
+    }
+    else{
+      console.log("Final Order")
     }
   })
 
