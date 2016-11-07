@@ -12,7 +12,7 @@ const receiveProductsFromServer = function (products) {
 
 export const loadProducts = function () {
   return function (dispatch) {
-    fetch('/api/products')
+    fetch('/api/candy')
       .then(res => res.json())
       .then(products => {
         const action = receiveProductsFromServer(products);
