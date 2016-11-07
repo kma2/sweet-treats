@@ -30,14 +30,6 @@ const app = require('APP')
   ]
   const arrOrder = [{}]
 
-// db.didSync
-//   .then(() => db.sync({force: true}))
-//   .then(function(){
-//     arrCandy.forEach(e => Candy.create(e))
-//   }).then(() => {
-//     arrOrder.forEach(e => Order.create(e))
-//   })
-//   .catch(error => console.error(error))    
 
 
 const seedCandy = () => {
@@ -46,15 +38,9 @@ const seedCandy = () => {
   })
 }
 
-const seedOrder = () =>{
-  Promise.resolve(Order.create({}))
-}
-
-
 db.didSync
   .then(() => db.sync({force: true}))
   .then(seedCandy)
-  .then(seedOrder)
   .then(() =>{
     console.log("WELL DONE SEEDED WELL")
   })

@@ -5,7 +5,7 @@ const api = module.exports = require('express').Router()
 const Candy = require('APP/db/models/candy')
 const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
-// const UserOrders = require('APP/db/models/UserOrders')
+const UserOrder = require('APP/db/models/UserOrders')
 const CandyOrder = require('APP/db/models/candyOrders')
 const bcrypt = require('bcrypt')
 const addCandy = function(order,candy,decrement){ 
@@ -36,16 +36,16 @@ api
   /*----------CANDY ROUTES----------*/
 
   // adding a candy to an order (NEED TO FIX USERORDERS TABLE)
-  .post('/candy/:id',(req,res,next) => { 
+  .post('/candy/:id',(req,res,next) => {  
     if(req.session.user){
       Order.findOne({
         where:{
           status:'pending',
           user_id:req.session.user.id
         },
-        include: [{model: UserOrders}]
       })
       .then(order =>{
+        console.log("*******",req.session.user.id)
         Candy.findById(req.params.id)
         .then(candy =>{
           order.addCandy(candy)
@@ -75,7 +75,7 @@ api
   })
 
   // delete a specific candy from an order
-  .delete('/candy/:id',(req,res,next) =>{
+  .delete('/candy/:id',(req,res,next) =>{ 
     Order.findById(1)
     .then(order =>{
       Candy.findById(req.params.id)
@@ -90,7 +90,7 @@ api
   })
 
   //Fake route real quick (fix session order id shit)
-  .put('/candy/quantity/:type/:id',(req,res) =>{
+  .put('/candy/quantity/:type/:id',(req,res) =>{  
     if(req.session.user){
       CandyOrder.findOne({
         where:{
@@ -125,7 +125,7 @@ api
   })
 
   // get all candy
-  .get('/candy',(req,res) =>{  
+  .get('/candy',(req,res) =>{   
     if (!req.session.cart) {
       req.session.cart = {};
       req.session.cart.order = [];
@@ -137,7 +137,7 @@ api
   })
 
   // get candy by id
-  .get('/candy/:id',(req,res) =>{
+  .get('/candy/:id',(req,res) =>{ 
     Candy.findById(req.params.id)
     .then((candy) =>{
       res.send(candy)
@@ -147,13 +147,13 @@ api
   /*----------USER ROUTES----------*/
 
   // user can logout
-   .get('/user/logout',(req,res) =>{
+   .get('/user/logout',(req,res) =>{ 
      req.session.destroy() 
      res.sendStatus(204)
   })
 
   // get a user by Id (NEEDS TO BE UPDATED TO INCLUDE AUTH)
-  .get('/user/:id',(req,res) =>{
+  .get('/user/:id',(req,res) =>{ 
     User.findById(req.params.id)
     .then(user =>{
       res.send(user)
@@ -161,7 +161,7 @@ api
   })
 
   // update a user
-  .put('/user/:id',(req,res) =>{
+  .put('/user/:id',(req,res) =>{ 
     User.update(req.body,{
       where:{
         id: req.params.id
@@ -173,7 +173,7 @@ api
   })
 
   // delete a user
-  .delete('/user/:id',(req,res) =>{
+  .delete('/user/:id',(req,res) =>{ 
     User.findById(req.params.id)
     .then(user =>{
       user.destroy()
@@ -183,11 +183,16 @@ api
   })
 
   // register a new user
-  .post('/user/register',(req,res) =>{
+  .post('/user/register',(req,res) =>{ 
     User.create(req.body)
     .then(user =>{
       req.session.user = user
-      res.status(201).send(user)
+      Order.create({})
+      .then(order =>{
+        order.user_id = req.session.user.id
+        order.save()
+        res.status(201).send(user)
+      })
     })
   })
 
@@ -204,7 +209,13 @@ api
         if(binary) {
           console.log('logged in')
           req.session.user = user
-          res.sendStatus(200)
+          Order.findOrCreate({
+            where:{
+              status:'pending',
+              user_id:req.session.user.id
+            }
+          }).then(order =>{console.log('order m8 ',order);res.sendStatus(200)})
+          // res.sendStatus(200)
         }
         else {
           res.sendStatus(401)
@@ -215,6 +226,9 @@ api
       res.sendStatus(403)
     })
   })
+ /*----------Review ROUTES----------*/
+
+
 
   /*----------ADMIN ROUTES----------*/
 
