@@ -1,16 +1,15 @@
 'use strict'
-
 const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 //WE ADDED STATUS
-const User = db.define('users', {
+const UserA = db.define('users', {
   name: Sequelize.STRING,  
   email: {
     type: Sequelize.STRING,
     validate: {
 			isEmail: true,
-			notEmpty: true,
+			notEmpty: true
 		}
   },
   status:{
@@ -24,7 +23,7 @@ const User = db.define('users', {
 	indexes: [{fields: ['email'], unique: true}],
   hooks: {
     beforeCreate: setEmailAndPassword,
-    beforeUpdate: setEmailAndPassword,
+    beforeUpdate: setEmailAndPassword
   },
   instanceMethods: {
     authenticate(plaintext) {
@@ -51,4 +50,5 @@ function setEmailAndPassword(user) {
   )
 }
 
-module.exports = User
+
+module.exports = UserA

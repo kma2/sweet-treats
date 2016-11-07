@@ -30,14 +30,6 @@ const app = require('APP')
   ]
   const arrOrder = [{}]
 
-// db.didSync
-//   .then(() => db.sync({force: true}))
-//   .then(function(){
-//     arrCandy.forEach(e => Candy.create(e))
-//   }).then(() => {
-//     arrOrder.forEach(e => Order.create(e))
-//   })
-//   .catch(error => console.error(error))    
 
 
 const seedCandy = () => {
