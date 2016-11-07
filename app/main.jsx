@@ -15,10 +15,17 @@ import SignInOrContinueAsGuest from './components/SignInOrContinueAsGuest';
 import SignIn from './components/SignIn'
 import Checkout from './components/Checkout';
 import ConfirmationPage from './components/ConfirmationPage';
-import { loadProducts } from './action-creators';
+import { loadProducts, loadOneProduct } from './action-creators';
 
 const onProductsEnter = () => {
   const thunk = loadProducts();
+  store.dispatch(thunk);
+}
+
+const onSingleProductEnter = (nextRouterState) => {
+  const productId = nextRouterState.params.productId;
+  console.log('ID',productId)
+  const thunk = loadOneProduct(productId);
   store.dispatch(thunk);
 }
 
@@ -27,8 +34,8 @@ render (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="home" component={AllProductsContainer} onEnter={onProductsEnter}>
-          <Route path="products/:productId" component={SingleProductContainer} />
         </Route>
+        <Route path="products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
         <Route path="cart" component={ShoppingCartContainer} />
         <Route path="signin" component={SignIn} />
         <Route path="checkout" component={Checkout}>

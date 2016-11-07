@@ -31,7 +31,7 @@ const selectProduct = function (product) {
 
 export const loadOneProduct = function (productId) {
   return function (dispatch) {
-    fetch('/api/products/' + productId)
+    fetch('/api/candy/' + productId)
       .then(res => res.json())
       .then(product => {
         const action = selectProduct(product);
