@@ -2,6 +2,8 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
+// export const RECEIVE_USER_FROM_SERVER = 'RECEIVE_USER_FROM_SERVER';
+// export const REGISTER_USER_TO_SERVER = 'REGISTER_USER_TO_SERVER';
 
 const receiveProductsFromServer = function (products) {
   return {
@@ -63,7 +65,6 @@ export const loadOneProduct = function (productId) {
     };
   }
 
-
   const removeProductFromCart = function (product) {
     return {
       type: REMOVE_PRODUCT_FROM_CART,
@@ -82,3 +83,27 @@ export const loadOneProduct = function (productId) {
         .catch(err => console.error(err));
     }
   }
+
+  // export const receiveUser = function(user) {
+  //   return {
+  //     type: RECEIVE_USER_FROM_SERVER,
+  //     user: user
+  //   }
+  // }
+  //
+  // export const registerNewUser = function(user) {
+  //   return function(dispatch) {
+  //     fetch('/api/user/register', {
+  //       method: 'POST',
+  //       body: user
+  //     })
+  //     .then(res => res.json())
+  //     .then(user => {
+  //       const action = receiveUser(user);
+  //       dispatch(action);
+  //       console.log('USER', user)
+  //       console.log('NEW USER REGISTERED')
+  //     })
+  //     .catch(err => console.error(err));
+  //   }
+  // }

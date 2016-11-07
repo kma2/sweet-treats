@@ -15,6 +15,7 @@ import SignInOrContinueAsGuest from './components/SignInOrContinueAsGuest';
 import SignIn from './components/SignIn'
 import Checkout from './components/Checkout';
 import ConfirmationPage from './components/ConfirmationPage';
+import Register from './components/Register';
 import { loadProducts, loadOneProduct } from './action-creators';
 
 const onProductsEnter = () => {
@@ -38,6 +39,7 @@ render (
           <Route path="signin" component={SignInOrContinueAsGuest} />
         </Route>
         <Route path="confirmation" component={ConfirmationPage} />
+        <Route path="register" component={Register} />
         <Route path="home" component={AllProductsContainer} onEnter={onProductsEnter}>
         </Route>
         <Route path=":productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
