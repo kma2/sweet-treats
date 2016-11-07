@@ -24,7 +24,6 @@ const onProductsEnter = () => {
 
 const onSingleProductEnter = (nextRouterState) => {
   const productId = nextRouterState.params.productId;
-  console.log('ID',productId)
   const thunk = loadOneProduct(productId);
   store.dispatch(thunk);
 }
@@ -35,7 +34,7 @@ render (
       <Route path="/" component={App}>
         <Route path="home" component={AllProductsContainer} onEnter={onProductsEnter}>
         </Route>
-        <Route path="products/:productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
+        <Route path=":productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
         <Route path="cart" component={ShoppingCartContainer} />
         <Route path="signin" component={SignIn} />
         <Route path="checkout" component={Checkout}>
