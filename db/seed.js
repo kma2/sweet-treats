@@ -46,15 +46,9 @@ const seedCandy = () => {
   })
 }
 
-const seedOrder = () =>{
-  Promise.resolve(Order.create({}))
-}
-
-
 db.didSync
   .then(() => db.sync({force: true}))
   .then(seedCandy)
-  .then(seedOrder)
   .then(() =>{
     console.log("WELL DONE SEEDED WELL")
   })
