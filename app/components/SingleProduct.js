@@ -5,7 +5,7 @@ import {Grid, Row, Col, Button, ButtonToolbar, DropdownButton, MenuItem} from 'r
 // use react-rater to implement star ratings
 // TO DO: add rating stars
 
-export default () => (
+export default ({selectedProduct}) => (
 	<div className="single_product">
 		<Grid>
 			<Row className="show-grid">
@@ -15,14 +15,14 @@ export default () => (
 
 					{/* product detail */}
 					<Col xs={12} md={4}>
-						<img src="product_photos/parisian-pineapples.jpg" className="product_image" />
+						<img src={selectedProduct.photo} className="product_image" />
 					</Col>
 					<Col xs={12} md={1}></Col>
 					<Col xs={12} md={4}>
 						<Col xs={12}>
-							<p className="product_name"> Parisian Pineapples </p>
-							<p className="product_price">$6.5</p>
-							<p>From Paris with love, these darling baby pineapples are made with fresh pineapple purée for an all-natural tropical treat.</p>
+							<p className="product_name"> {selectedProduct.name} </p>
+							<p className="product_price">{`$${selectedProduct.price}`}</p>
+							<p>{selectedProduct.description}</p>
 						</Col>
 						<Col xs={12}>
 							<p> Quantity </p>
@@ -33,7 +33,7 @@ export default () => (
 					        <MenuItem eventKey="1">2</MenuItem>
 					        <MenuItem eventKey="2">3</MenuItem>
 					        <MenuItem eventKey="3">4</MenuItem>
-									<MenuItem eventKey="3">5</MenuItem>
+							<MenuItem eventKey="3">5</MenuItem>
 					      </DropdownButton>
 					    </ButtonToolbar>
 						</Col>
