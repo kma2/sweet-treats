@@ -32,15 +32,15 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="home" component={AllProductsContainer} onEnter={onProductsEnter}>
-        </Route>
-        <Route path=":productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
         <Route path="cart" component={ShoppingCartContainer} />
         <Route path="signin" component={SignIn} />
         <Route path="checkout" component={Checkout}>
           <Route path="signin" component={SignInOrContinueAsGuest} />
         </Route>
         <Route path="confirmation" component={ConfirmationPage} />
+        <Route path="home" component={AllProductsContainer} onEnter={onProductsEnter}>
+        </Route>
+        <Route path=":productId" component={SingleProductContainer} onEnter={onSingleProductEnter} />
         <IndexRedirect to='/home' />
       </Route>
     </Router>
