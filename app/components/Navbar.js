@@ -1,6 +1,7 @@
 import React from 'react';
 import {Navbar, NavItem, MenuItem, Nav, NavDropdown, ButtonGroup, Button, DropdownButton} from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router';
 
 export default class NavbarComponent extends React.Component {
 	constructor(props) {
@@ -27,14 +28,14 @@ export default class NavbarComponent extends React.Component {
 			  <Navbar collapseOnSelect>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        <a href="#">sweet treats</a>
+			        <Link to="home">sweet treats</Link>
 			      </Navbar.Brand>
 			      <Navbar.Toggle />
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav pullRight>
-			        <NavItem eventKey={1} href="#">{this.state.loggedIn}</NavItem>
-			        <NavItem eventKey={2} href="#">Shopping Cart (1)</NavItem>
+			        <NavItem eventKey={1} className= "navbarLink"><Link to="home" style = {{textDecoration: 'none', color: '#777'}}>{this.state.loggedIn}</Link></NavItem>
+			        <NavItem eventKey={2} className= "navbarLink"><Link to ="cart" style = {{textDecoration: 'none', color: '#777'}}>Shopping Cart (1)</Link></NavItem>
 			      </Nav>
 			    </Navbar.Collapse>
 				</Navbar>
