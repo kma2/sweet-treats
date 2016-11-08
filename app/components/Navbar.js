@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class NavbarComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {loggedIn: false}
+		this.state = {loggedIn: ""}
 	}
 
 	componentDidMount() {
@@ -13,10 +13,10 @@ export default class NavbarComponent extends React.Component {
 		.then(res => res.data)
 		.then(status => {
 			if (status === "logged in") {
-				this.setState({loggedIn: true})
+				this.setState({loggedIn: "Logout"})
 			}
 			else {
-				this.setState({loggedIn: false})
+				this.setState({loggedIn: "Login"})
 			}
 		})
 
@@ -33,7 +33,7 @@ export default class NavbarComponent extends React.Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav pullRight>
-			        <NavItem eventKey={1} href="#">{this.state.loggedIn ? "Logout" : "Log In"}</NavItem>
+			        <NavItem eventKey={1} href="#">{this.state.loggedIn}</NavItem>
 			        <NavItem eventKey={2} href="#">Shopping Cart (1)</NavItem>
 			      </Nav>
 			    </Navbar.Collapse>
