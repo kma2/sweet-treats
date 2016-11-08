@@ -334,6 +334,17 @@ api
     }
   })
 
+  /* ---------CHECK LOGIN STATUS ROUTE ------*/
+
+  .get('/checkLogin', (req,res) => {
+    if (req.session.user) {
+      res.send("logged in")
+    }
+    else {
+      res.send("not logged in")
+    }
+  })
+
 
 // Send along any errors
 api.use((err, req, res, next) => {
