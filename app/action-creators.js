@@ -86,27 +86,3 @@ export const loadOneProduct = function (productId) {
         .catch(err => console.error(err));
     }
   }
-
-  // export const receiveUser = function(user) {
-  //   return {
-  //     type: RECEIVE_USER_FROM_SERVER,
-  //     user: user
-  //   }
-  // }
-  //
-  // export const registerNewUser = function(user) {
-  //   return function(dispatch) {
-  //     fetch('/api/user/register', {
-  //       method: 'POST',
-  //       body: user
-  //     })
-  //     .then(res => res.json())
-  //     .then(user => {
-  //       const action = receiveUser(user);
-  //       dispatch(action);
-  //       console.log('USER', user)
-  //       console.log('NEW USER REGISTERED')
-  //     })
-  //     .catch(err => console.error(err));
-  //   }
-  // }

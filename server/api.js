@@ -7,8 +7,9 @@ const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
 const UserOrder = require('APP/db/models/UserOrders')
 const CandyOrder = require('APP/db/models/candyOrders')
+const Promise = require('bluebird')
 const bcrypt = require('bcrypt')
-const addCandy = function(order,candy,decrement){ 
+const addCandy = function(order,candy,decrement){
   var shouldAdd = true
   for(var i in order){
     if(order[i].candy.id === candy.id){
@@ -36,7 +37,7 @@ api
   /*----------CANDY ROUTES----------*/
 
   // adding a candy to an order (NEED TO FIX USERORDERS TABLE)
-  .post('/candy/:id',(req,res,next) => {  
+  .post('/candy/:id',(req,res,next) => {
     if(req.session.user){
       Order.findOne({
         where:{
@@ -58,7 +59,7 @@ api
     }
     else{
       console.log('Not logged in / Unauth')
-      //Query for candy 
+      //Query for candy
       Candy.findOne({
         where:{
           id:req.params.id
@@ -75,7 +76,7 @@ api
   })
 
   // delete a specific candy from an order
-  .delete('/candy/:id',(req,res,next) =>{ 
+  .delete('/candy/:id',(req,res,next) =>{
     Order.findById(1)
     .then(order =>{
       Candy.findById(req.params.id)
@@ -90,25 +91,25 @@ api
   })
 
   //Fake route real quick (fix session order id shit)
-  .put('/candy/quantity/:type/:id',(req,res) =>{  
+  .put('/candy/quantity/:type/:candyId/:orderId',(req,res) =>{  
+    console.log("increment/decrement route")
     if(req.session.user){
       CandyOrder.findOne({
         where:{
-          candy_id:req.params.id,
-          order_id:1
+          candy_id:req.params.candyId,
+          order_id:req.params.orderId
         }
       })
       .then((found) =>{
-        // console.log(found)
         req.params.type === 'increment' ? found.increment() : found.decrement()
         res.sendStatus(204)
       }).catch(err =>{
         res.sendStatus(207)
       })
     }
-    else{ 
+    else{
       console.log('Not logged in / Unauth')
-      //Query for candy 
+      //Query for candy
       Candy.findOne({
         where:{
           id:req.params.id
@@ -125,7 +126,7 @@ api
   })
 
   // get all candy
-  .get('/candy',(req,res) =>{   
+  .get('/candy',(req,res) =>{
     if (!req.session.cart) {
       req.session.cart = {};
       req.session.cart.order = [];
@@ -137,7 +138,7 @@ api
   })
 
   // get candy by id
-  .get('/candy/:id',(req,res) =>{ 
+  .get('/candy/:id',(req,res) =>{
     Candy.findById(req.params.id)
     .then((candy) =>{
       res.send(candy)
@@ -147,13 +148,13 @@ api
   /*----------USER ROUTES----------*/
 
   // user can logout
-   .get('/user/logout',(req,res) =>{ 
-     req.session.destroy() 
+   .get('/user/logout',(req,res) =>{
+     req.session.destroy()
      res.sendStatus(204)
   })
 
   // get a user by Id (NEEDS TO BE UPDATED TO INCLUDE AUTH)
-  .get('/user/:id',(req,res) =>{ 
+  .get('/user/:id',(req,res) =>{
     User.findById(req.params.id)
     .then(user =>{
       res.send(user)
@@ -161,7 +162,7 @@ api
   })
 
   // update a user
-  .put('/user/:id',(req,res) =>{ 
+  .put('/user/:id',(req,res) =>{
     User.update(req.body,{
       where:{
         id: req.params.id
@@ -173,7 +174,7 @@ api
   })
 
   // delete a user
-  .delete('/user/:id',(req,res) =>{ 
+  .delete('/user/:id',(req,res) =>{
     User.findById(req.params.id)
     .then(user =>{
       user.destroy()
@@ -183,7 +184,7 @@ api
   })
 
   // register a new user
-  .post('/user/register',(req,res) =>{ 
+  .post('/user/register',(req,res) =>{
     User.create(req.body)
     .then(user =>{
       req.session.user = user
@@ -197,7 +198,7 @@ api
   })
 
   // user can login
-  .post('/user/login',(req,res) => { 
+  .post('/user/login',(req,res) => {
     User.findOne({
       where:{
         email:req.body.email.toLowerCase()
@@ -214,7 +215,7 @@ api
               status:'pending',
               user_id:req.session.user.id
             }
-          }).then(order =>{console.log('order m8 ',order);res.sendStatus(200)})
+          }).then(order =>{console.log('ORDER ',order);res.sendStatus(200)})
           // res.sendStatus(200)
         }
         else {
@@ -243,13 +244,32 @@ api
     .then(orders => res.send(orders))
     .catch(next)
   })
-
+ 
   //get a specific order 
-  .get('/order/:orderId',(req,res) =>{
-    Order.findById(req.params.orderId)
-    .then(order =>{
-      res.send(order)
-    })
+  .get('/order',(req,res) =>{  
+    console.log("in order fam")
+    if (req.session.user) {
+      console.log('in session')
+      Order.findOne({
+        where: {
+          user_id : req.session.user.id
+        }
+      })
+      .then(order =>{
+        order.getCandies()
+        .then(candies =>{
+          let arrToReturn = []
+          candies.forEach(candy =>{
+            arrToReturn.push({candy:candy.dataValues,quantity:candy.candyOrder.quantity})
+          })
+          res.send(arrToReturn)
+        })
+      })
+    }
+    else {
+      console.log('not in session',req.session.cart)
+      res.send(req.session.cart.order)
+    }
   })
 
   // update an order to change status(admin)
@@ -261,7 +281,7 @@ api
   })
 
   // create a new candy
-  .post('/admin/candy',(req,res) =>{
+  .post('/admin/candy',(req,res) =>{ 
     Candy.create(req.body)
     .then((candy) =>{
       console.log("Created candy ",candy.name)
@@ -311,6 +331,17 @@ api
     }
     else{
       console.log("Final Order")
+    }
+  })
+
+  /* ---------CHECK LOGIN STATUS ROUTE ------*/
+
+  .get('/checkLogin', (req,res) => {
+    if (req.session.user) {
+      res.send("logged in")
+    }
+    else {
+      res.send("not logged in")
     }
   })
 
