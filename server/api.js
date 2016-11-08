@@ -7,6 +7,7 @@ const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
 const UserOrder = require('APP/db/models/UserOrders')
 const CandyOrder = require('APP/db/models/candyOrders')
+const Promise = require('bluebird')
 const bcrypt = require('bcrypt')
 const addCandy = function(order,candy,decrement){
   var shouldAdd = true
@@ -90,16 +91,16 @@ api
   })
 
   //Fake route real quick (fix session order id shit)
-  .put('/candy/quantity/:type/:id',(req,res) =>{
+  .put('/candy/quantity/:type/:candyId/:orderId',(req,res) =>{  
+    console.log("increment/decrement route")
     if(req.session.user){
       CandyOrder.findOne({
         where:{
-          candy_id:req.params.id,
-          order_id:1
+          candy_id:req.params.candyId,
+          order_id:req.params.orderId
         }
       })
       .then((found) =>{
-        // console.log(found)
         req.params.type === 'increment' ? found.increment() : found.decrement()
         res.sendStatus(204)
       }).catch(err =>{
@@ -243,9 +244,9 @@ api
     .then(orders => res.send(orders))
     .catch(next)
   })
-
-  //get a specific order
-  .get('/order',(req,res) =>{
+ 
+  //get a specific order 
+  .get('/order',(req,res) =>{  
     console.log("in order fam")
     if (req.session.user) {
       console.log('in session')
@@ -255,7 +256,14 @@ api
         }
       })
       .then(order =>{
-        res.send(order)
+        order.getCandies()
+        .then(candies =>{
+          let arrToReturn = []
+          candies.forEach(candy =>{
+            arrToReturn.push({candy:candy.dataValues,quantity:candy.candyOrder.quantity})
+          })
+          res.send(arrToReturn)
+        })
       })
     }
     else {
@@ -273,7 +281,7 @@ api
   })
 
   // create a new candy
-  .post('/admin/candy',(req,res) =>{
+  .post('/admin/candy',(req,res) =>{ 
     Candy.create(req.body)
     .then((candy) =>{
       console.log("Created candy ",candy.name)

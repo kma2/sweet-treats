@@ -22,3 +22,4 @@ const componentCreator = connect(mapStateToProps, mapDispatchToProps);
 const SingleProductContainer = componentCreator(SingleProduct);
 
 export default SingleProductContainer;
+//axios.post(`api/candy/${candyId}`)
