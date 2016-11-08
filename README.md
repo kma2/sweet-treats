@@ -1,37 +1,52 @@
-This is the Grace Shopper project for FSA 1609.
+# Candystore
 
-Team name: Candy Store
+This is a project built by Brandon Culp, Hussein Farah, Chris Manahan, & Katy Ma at Fullstack
+Academy. The goal of this project was to build an e-commerce platform that allows users to shop
+and admins to manage the store.
 
-## 3. Start my dusty heart
 
-Short and sweet:
+## How to start the app
 
 ```
 npm install
+npm run seed
 npm run build-watch
 npm start
 ```
 
-`npm start` doesn't build, so watch out for that. The reason it doesn't build is because you
-probably want to watch the build and run me in separate terminals. Otherwise, build errors get
-all mixed in with HTTP request logging.
+Important: make sure to run `npm start` and `npm run build-watch` in separate terminals.
 
-## My anatomy
+## Technologies Used
 
-`/app` has the React/Redux setup. `main.jsx` is the entry point.
+##### Built On
+Node.js
 
-`/db` has the Sequelize models and database setup. It'll create the database for you if it doesn't exist,
-assuming you're using postgres.
+##### Backend
+Postgres.js  
+Sequelize.js  
+Express.js  
 
-`/server` has the Express server and routes. `start.js` is the entry point.
+##### Authentication
+Bcrypt.js  
+Passport.js  
 
-`/bin` has scripts. (Right now it has *one* script that creates a useful symlink.)
+##### Front-end
+React.js  
+Redux.js  
+HTML/CSS  
 
-## Conventions
+##### Testing
+Mocha.js  
+Chai.js  
+Enzyme.js  
 
-I use `require` and `module.exports` in `.js` files.
 
-I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
+## Overview
 
-I use two spaces, no semi-colons, and trailing commas where possible. I'll
-have a linter someday soon.
+`/app` contains our React/Redux setup. `main.jsx` is the entry point.
+
+`/db` has our Sequelize models and database setup.
+
+`/server` has our Express server and routes. `start.js` is the entry point.
+
+`/public` contains product photos and our HTML/CSS.
