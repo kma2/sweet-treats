@@ -16,7 +16,7 @@ export default ({receivedProducts}) => (
 						<DropdownButton title="Best Sellers" id="bg-nested-dropdown">
 							<MenuItem eventKey="1">Top Rated</MenuItem>
 							<MenuItem eventKey="2">Price: Low to High </MenuItem>
-							<MenuItem eventKey="2">Price: High to Low </MenuItem>
+							<MenuItem eventKey="3">Price: High to Low </MenuItem>
 						</DropdownButton>
 					</Col>
 
@@ -34,17 +34,17 @@ export default ({receivedProducts}) => (
 
 					</Col>
 				</Col>
-
-
-				{/* Temporary, hard-coded products */}
 				{
-					receivedProducts.map(product => (
+						(
+						receivedProducts.map(product => (
 						<Col xs={6} md={4}>
 							<img src={product.photo} className="product_preview_image"/>
 							<h3 className="product_preview_name">{product.name}</h3>
 							<p className="product_preview_description">{product.short_description}</p>
+							<p className="product_preview_name">{`$${product.price}`}</p>
 						</Col>	
 					))
+						)
 				}
 			</Row>
 		</Grid>
