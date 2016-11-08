@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Grid, Row, Col, DropdownButton, MenuItem, FormGroup, FormControl, Button, Navbar} from 'react-bootstrap';
-
+import {Link} from 'react-router';
 
 export default ({receivedProducts}) => (
 	<div>
@@ -36,10 +36,10 @@ export default ({receivedProducts}) => (
 				</Col>
 				{
 						(
-						receivedProducts.map(product => (
+						receivedProducts && receivedProducts.map(product => (
 						<Col xs={6} md={4}>
-							<img src={product.photo} className="product_preview_image"/>
-							<h3 className="product_preview_name">{product.name}</h3>
+							<Link to={product.id.toString()} style = {{textDecoration: 'none', color: 'black'}}><img src={product.photo} className="product_preview_image"/></Link>
+							<h3 className="product_preview_name"><Link to={product.id.toString()} style = {{textDecoration: 'none', color: 'black'}}>{product.name}</Link></h3>
 							<p className="product_preview_description">{product.short_description}</p>
 							<p className="product_preview_name">{`$${product.price}`}</p>
 						</Col>	

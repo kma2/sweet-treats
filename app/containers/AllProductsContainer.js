@@ -15,6 +15,7 @@ const mapStateToProps = function (state) {
 
 	//Sort by BestSeller
 	//state.allProducts.sort((candyA,candyB) =>{return candyB.numOrdered - candyA.numOrdered})
+	console.log(state.allProducts[0])
 	return {
 		receivedProducts: state.allProducts
 	}
