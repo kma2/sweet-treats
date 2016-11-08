@@ -1,28 +1,57 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
 import axios from 'axios'
-export default class ShoppingCart extends React.Component {
 
+var self;
+
+export default class ShoppingCart extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {order: []}
+		self = this
+		console.log('self in constructor',self)
+		this.state = {order: []};
+		// this.rerender = this.rerender.bind(this)
 	}
 
 	componentDidMount() {
+		console.log('mount this',this)
+		this.rerender()
+	}
+
+	rerender(){
+		console.log('rerender called')
 		axios.get('/api/order')
-			.then(res => res.data)
-			.then(product => {
-				console.log(this.state.order)
-				this.setState({order: product})
-				console.log(this.state.order)
+				.then(res => res.data)
+				.then(product => {	
+					this.setState({order: product})
+					if(this.state.order.length){
+						console.log(this.state.order)
+					}
+				})
+				.catch(err => console.error(err));
+	}
+
+	increment(candyId,orderId){
+		axios.put(`api/candy/quantity/increment/${candyId}/${orderId}`)
+			.then(() => {
+				self.rerender()
+			})
+			.catch(err => console.error(err));
+	}
+	decrement(candyId,orderId){
+		axios.put(`api/candy/quantity/decrement/${candyId}/${orderId}`)
+			.then(() => {
+				self.rerender()
 			})
 			.catch(err => console.error(err));
 	}
 
 	render() {
-		return (
-				<div>
 
+		return (
+				
+				<div>
+					<CartItem candy={this.state.order} increment={this.increment} decrement={this.decrement}/>
 				</div>
 		)
 	}
