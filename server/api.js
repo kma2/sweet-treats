@@ -7,6 +7,7 @@ const Order = require('APP/db/models/order')
 const User = require('APP/db/models/user')
 const UserOrder = require('APP/db/models/UserOrders')
 const CandyOrder = require('APP/db/models/candyOrders')
+const Promise = require('bluebird')
 const bcrypt = require('bcrypt')
 const addCandy = function(order,candy,decrement){ 
   var shouldAdd = true
@@ -255,7 +256,15 @@ api
         }
       })
       .then(order =>{
-        res.send(order)
+        order.getCandies()
+        .then(candies =>{
+          let arrToReturn = []
+          candies.forEach(candy =>{
+            arrToReturn.push({candy:candy.dataValues,quantity:candy.candyOrder.quantity})
+          })
+          // console.log(arrToReturn)
+        })
+        res.send(arrToReturn)
       })
     }
     else {
