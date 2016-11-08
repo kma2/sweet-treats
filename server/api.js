@@ -246,7 +246,7 @@ api
   })
  
   //get a specific order 
-  .get('/order',(req,res) =>{  
+  .get('/order',(req,res) =>{   
     console.log("in order fam")
     if (req.session.user) {
       console.log('in session')
