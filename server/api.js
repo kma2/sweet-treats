@@ -243,13 +243,25 @@ api
     .then(orders => res.send(orders))
     .catch(next)
   })
-
+ 
   //get a specific order 
-  .get('/order/:orderId',(req,res) =>{
-    Order.findById(req.params.orderId)
-    .then(order =>{
-      res.send(order)
-    })
+  .get('/order',(req,res) =>{ 
+    console.log("in order fam")
+    if (req.session.user) {
+      console.log('in session')
+      Order.findOne({
+        where: {
+          user_id : req.session.user.id
+        }
+      })
+      .then(order =>{
+        res.send(order)
+      })
+    }
+    else {
+      console.log('not in session',req.session.cart)
+      res.send(req.session.cart.order)
+    }
   })
 
   // update an order to change status(admin)
