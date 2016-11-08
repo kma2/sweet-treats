@@ -8,7 +8,7 @@ const mapStateToProps = function (state) {
 	// state.allProducts.sort((candyA,candyB) =>{return candyA.price - candyB.price})
 	
 	//Sort High to Low
-	// state.allProducts.sort((candyA,candyB) =>{return candyB.price - candyA.price})
+	state.allProducts.sort((candyA,candyB) =>{return candyB.price - candyA.price})
 
 	//Sort by Rating
 	//state.allProducts.sort((candyA,candyB) =>{return candyA.rating - candyB.rating})
