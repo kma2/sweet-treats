@@ -49,7 +49,7 @@ api
         Candy.findById(req.params.id)
         .then(candy =>{
           order.addCandy(candy)
-          res.sendStatus(200)
+          res.status(200).send(candy)
         })
       }).catch((err) =>{
         console.log("Couldn't find Candy/Order")
