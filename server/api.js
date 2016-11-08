@@ -91,16 +91,16 @@ api
   })
 
   //Fake route real quick (fix session order id shit)
-  .put('/candy/quantity/:type/:id',(req,res) =>{  
+  .put('/candy/quantity/:type/:candyId/:orderId',(req,res) =>{  
+    console.log("increment/decrement route")
     if(req.session.user){
       CandyOrder.findOne({
         where:{
-          candy_id:req.params.id,
-          order_id:1
+          candy_id:req.params.candyId,
+          order_id:req.params.orderId
         }
       })
       .then((found) =>{
-        // console.log(found)
         req.params.type === 'increment' ? found.increment() : found.decrement()
         res.sendStatus(204)
       }).catch(err =>{
@@ -246,7 +246,7 @@ api
   })
  
   //get a specific order 
-  .get('/order',(req,res) =>{ 
+  .get('/order',(req,res) =>{  
     console.log("in order fam")
     if (req.session.user) {
       console.log('in session')
@@ -262,9 +262,8 @@ api
           candies.forEach(candy =>{
             arrToReturn.push({candy:candy.dataValues,quantity:candy.candyOrder.quantity})
           })
-          // console.log(arrToReturn)
+          res.send(arrToReturn)
         })
-        res.send(arrToReturn)
       })
     }
     else {
@@ -282,7 +281,7 @@ api
   })
 
   // create a new candy
-  .post('/admin/candy',(req,res) =>{
+  .post('/admin/candy',(req,res) =>{ 
     Candy.create(req.body)
     .then((candy) =>{
       console.log("Created candy ",candy.name)
