@@ -34,7 +34,7 @@ export default class NavbarComponent extends React.Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav pullRight>
-			        <NavItem eventKey={1} className= "navbarLink"><Link to="home" style = {{textDecoration: 'none', color: '#777'}}>{this.state.loggedIn}</Link></NavItem>
+			        <NavItem eventKey={1} className= "navbarLink"><Link to={this.state.loggedIn === "Logout" ? "home" : "signin"} style = {{textDecoration: 'none', color: '#777'}}>{this.state.loggedIn}</Link></NavItem>
 			        <NavItem eventKey={2} className= "navbarLink"><Link to ="cart" style = {{textDecoration: 'none', color: '#777'}}>Shopping Cart (1)</Link></NavItem>
 			      </Nav>
 			    </Navbar.Collapse>
@@ -42,5 +42,3 @@ export default class NavbarComponent extends React.Component {
 		)
 	}
 }
-
-//ONE PROBLEM: THE TEXT WILL FLASH BETWEEN LOGIN AND LOGOUT WITH INITIAL RENDER
