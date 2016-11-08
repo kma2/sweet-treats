@@ -38,7 +38,7 @@ export default ({receivedProducts}) => (
 						(
 						receivedProducts && receivedProducts.map(product => (
 						<Col xs={6} md={4}>
-							<img src={product.photo} className="product_preview_image"/>
+							<Link to={product.id.toString()} style = {{textDecoration: 'none', color: 'black'}}><img src={product.photo} className="product_preview_image"/></Link>
 							<h3 className="product_preview_name"><Link to={product.id.toString()} style = {{textDecoration: 'none', color: 'black'}}>{product.name}</Link></h3>
 							<p className="product_preview_description">{product.short_description}</p>
 							<p className="product_preview_name">{`$${product.price}`}</p>
