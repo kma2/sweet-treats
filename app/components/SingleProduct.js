@@ -5,7 +5,7 @@ import {Grid, Row, Col, Button, ButtonToolbar, DropdownButton, MenuItem} from 'r
 // use react-rater to implement star ratings
 // TO DO: add rating stars
 
-export default ({selectedProduct}) => (
+export default ({selectedProduct,onLoadProductForShoppingCartAddition}) => (
 	<div className="single_product">
 		<Grid>
 			<Row className="show-grid">
@@ -38,7 +38,7 @@ export default ({selectedProduct}) => (
 					    </ButtonToolbar>
 						</Col>
 						<Col xs={7} className="add_to_cart">
-							<Button block>Add to Cart</Button>
+							<Button onClick={()=>{onLoadProductForShoppingCartAddition(selectedProduct.id)}}>Add to Cart</Button>
 						</Col>
 					</Col>
 

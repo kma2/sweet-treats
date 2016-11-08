@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { loadOneProduct } from '../action-creators';
+import { loadOneProduct,loadProductForShoppingCartAddition } from '../action-creators';
 import SingleProduct from '../components/SingleProduct';
 
 
@@ -13,6 +13,10 @@ const mapDispatchToProps = function(dispatch) {
 	return {
 		onLoadOneProduct: function() {
 			const thunk = loadOneProduct();
+			dispatch(thunk);
+		},
+		onLoadProductForShoppingCartAddition: function(candyId) {
+			const thunk = loadProductForShoppingCartAddition(candyId);
 			dispatch(thunk);
 		}
 	}

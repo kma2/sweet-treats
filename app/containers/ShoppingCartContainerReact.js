@@ -3,14 +3,12 @@ import CartItem from '../components/CartItem';
 import axios from 'axios'
 
 var self;
-
 export default class ShoppingCart extends React.Component {
 	constructor(props) {
 		super(props);
 		self = this
 		console.log('self in constructor',self)
 		this.state = {order: []};
-		// this.rerender = this.rerender.bind(this)
 	}
 
 	componentDidMount() {

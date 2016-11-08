@@ -1,3 +1,4 @@
+import axios from 'axios'
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const SELECT_PRODUCT = 'SELECT_PRODUCT';
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
@@ -53,11 +54,13 @@ export const loadOneProduct = function (productId) {
     }
   }
 
-  export const loadProductForShoppingCartAddition = function (productId) {
+  export const loadProductForShoppingCartAddition = function (candyId) {
     return function (dispatch) {
-      fetch('/api/products/' + productId)
-        .then(res => res.json())
+      axios.post('/api/candy/' + candyId)
+        .then(res => res.data)
         .then(product => {
+          console.log(candyId)
+          console.log(product)
           const action = addProductToCart(product);
           dispatch(action);
         })
