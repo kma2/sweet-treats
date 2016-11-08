@@ -11,7 +11,7 @@ export default () => (
 				<img src="product_photos/beach-buddies.jpg" className="cart_item_photo" />
 			</Col>
 			<Col xs={2}>
-				<p className="cart_item_field"> Beach Buddies </p>
+				<p className="cart_item_field"> {this.props.candy.name} </p>
 				<p className="cart_item_description"> Playful mix of fruit flavored gummies. </p>
 			</Col>
 			<Col xs={2}>
