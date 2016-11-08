@@ -41,3 +41,5 @@ export default class NavbarComponent extends React.Component {
 		)
 	}
 }
+
+//ONE PROBLEM: THE TEXT WILL FLASH BETWEEN LOGIN AND LOGOUT WITH INITIAL RENDER
