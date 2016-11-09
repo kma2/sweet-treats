@@ -21,10 +21,10 @@ export default () => (
           <img src="product_photos/parisian-pineapples.jpg" height="100px" />
         </Col>
         <Col xs={8}>
-          <h6> Parisian Pineapples </h6>
+          <h4> Parisian Pineapples </h4>
         </Col>
         <Col xs={2}>
-          <h6> $6.5 </h6>
+          <h4> $7.5 </h4>
         </Col>
         <Col xs={12}>
           <Col xs ={8}></Col>
@@ -32,7 +32,7 @@ export default () => (
             <h4>Order Total</h4>
           </Col>
           <Col xs = {2}>
-            <h6>$6.50</h6>
+            <h4>$7.50</h4>
           </Col>
         </Col>
         </FormGroup>
