@@ -32,7 +32,6 @@ module.exports = app
     secret: 'lakjdfoiasnalsjlafglakvlasmcoim93849384750734985km8cheerios',
   }))
 
-  //sessions added by Katy & Brandon
   //above does it for us but what about duration???? assuming keys are secret
 
   // Body parsing middleware

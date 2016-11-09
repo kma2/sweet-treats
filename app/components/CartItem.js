@@ -6,7 +6,6 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 export default (props) => (
 	<div>
-
 		{props.candy && props.candy.map(item => {
 			return(
 			<Grid key={item.candy.id}>
@@ -28,12 +27,23 @@ export default (props) => (
 						<p className="cart_item_field">{`$${item.candy.price * item.quantity}`}</p>
 					</Col>
 					<Col xs={2}>
-						<Button className="increment_button" onClick={()=>props.increment(item.candy.id,item.candy.candyOrder.order_id)}> + </Button>
-						<Button className="decrement_button" onClick={()=>props.decrement(item.candy.id,item.candy.candyOrder.order_id)}> - </Button>
+						{
+							item.candy.candyOrder === undefined ?
+							<div> 
+							<Button className="increment_button" onClick={()=>props.increment(item.candy.id,1)}> + </Button>
+							<Button className="decrement_button" onClick={()=>props.decrement(item.candy.id,1)}> - </Button>
+							</div>
+							:
+							<div>
+							<Button className="increment_button" onClick={()=>props.increment(item.candy.id,item.candy.candyOrder.order_id)}> + </Button>
+							<Button className="decrement_button" onClick={()=>props.decrement(item.candy.id,item.candy.candyOrder.order_id)}> - </Button>
+							</div>
+						}
 					</Col>
 				</Row>
 			</Grid>
 			)
 		})}
+		<Button className="btn btn-default" onClick={()=>{console.log("i'm checking you out lul")}}> Checkout </Button>
 	</div>
 )
