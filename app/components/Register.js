@@ -11,8 +11,7 @@ export default class Register extends React.Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {loggedIn: ""};
-    this.changeLoginTextWithoutRerender = this.changeLoginTextWithoutRerender.bind(this);
-  }
+   }
 
   componentDidMount() {
     axios.get('api/checkLogin')
