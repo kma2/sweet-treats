@@ -24,7 +24,7 @@ export default class AllProducts extends React.Component {
 			return arr.sort((candyA,candyB) =>{return candyA.rating - candyB.rating})
 		}
 		else if(this.state.sortBy === 'bestSelling'){
-			return arr.sort((candyA,candyB) =>{return candyB.numOrdered - candyA.numOrdered})
+			return arr;
 		}
 	}
 

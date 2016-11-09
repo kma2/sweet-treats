@@ -6,7 +6,7 @@ import { Link, browserHistory } from 'react-router';
 export default class NavbarComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {loggedIn: ""}
+		this.state = {loggedIn: ""};
 		this.hitLogOutRoute = this.hitLogOutRoute.bind(this);
 	}
 
@@ -44,8 +44,8 @@ export default class NavbarComponent extends React.Component {
 			      <Nav pullRight>
 			      
 			    {this.state.loggedIn === "Logout" ? 
-			    	<NavItem eventKey={1} className= "navbarLink" onClick = {this.hitLogOutRoute}>Logout</NavItem> :
-			    	<NavItem eventKey={2} className= "navbarLink"><Link to="signin" style = {{textDecoration: 'none', color: '#777'}}>Login</Link></NavItem>
+			    	<NavItem eventKey={1} className= "navbarLogin" onClick = {this.hitLogOutRoute}>Logout</NavItem> :
+			    	<NavItem eventKey={2} className= "navbarLogin"><Link to="signin" style = {{textDecoration: 'none', color: '#777'}}>Login</Link></NavItem>
 			  	}
 			        <NavItem eventKey={3} className= "navbarLink"><Link to ="cart" style = {{textDecoration: 'none', color: '#777'}}>Shopping Cart (1)</Link></NavItem>
 			      </Nav>

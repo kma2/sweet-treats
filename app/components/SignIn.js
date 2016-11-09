@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
 // component for users to log into their accounts
 
 export default class Signin extends React.Component {
@@ -55,6 +56,7 @@ export default class Signin extends React.Component {
     }
 
     axios.post('/api/user/login', credentials)
+    .then(() => browserHistory.push('/home'))
     .catch(err => console.error(err));
   }
 }
