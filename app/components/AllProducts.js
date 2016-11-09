@@ -9,22 +9,22 @@ export default class AllProducts extends React.Component {
   constructor(props) {
     super(props);
 		this.state = {
-			sortBy:'bestSelling'
+			sortBy:'Best Selling',
 		}
   }
 
 	sortArr(arr){
-		if(this.state.sortBy === 'lowToHigh'){
+		if(this.state.sortBy === 'Price: Low to High'){
 			return arr.sort((candyA,candyB) =>{return candyA.price - candyB.price})
 		}
-		else if(this.state.sortBy === 'highToLow'){
+		else if(this.state.sortBy === 'Price: High to Low'){
 			return arr.sort((candyA,candyB) =>{return candyB.price - candyA.price})
 		}
-		else if(this.state.sortBy === 'rating'){
+		else if(this.state.sortBy === 'Top Rated'){
 			return arr.sort((candyA,candyB) =>{return candyA.rating - candyB.rating})
 		}
-		else if(this.state.sortBy === 'bestSelling'){
-			return arr;
+		else if(this.state.sortBy === 'Best Selling'){
+			return arr.sort((candyA,candyB) =>{return candyA.numOrdered - candyB.numOrdered})
 		}
 	}
 
@@ -40,11 +40,11 @@ export default class AllProducts extends React.Component {
 								<h3 className="sort_by"> Sort by </h3>
 							</Col>
 							<Col xs={2}>
-								<DropdownButton title="Best Sellers" id="bg-nested-dropdown">
-									<MenuItem eventKey="1" onClick={()=>this.setState({sortBy:'bestSelling'})}>Best Selling</MenuItem>
-									<MenuItem eventKey="2" onClick={()=>this.setState({sortBy:'rating'})}>Top Rated</MenuItem>
-									<MenuItem eventKey="3" onClick={()=>this.setState({sortBy:'lowToHigh'})}>Price: Low to High </MenuItem>
-									<MenuItem eventKey="4" onClick={()=>this.setState({sortBy:'highToLow'})}>Price: High to Low </MenuItem>
+								<DropdownButton title={this.state.sortBy} id="bg-nested-dropdown">
+									<MenuItem eventKey="1" onClick={()=>this.setState({sortBy:'Best Selling'})}>Best Selling</MenuItem>
+									<MenuItem eventKey="2" onClick={()=>this.setState({sortBy:'Top Rated'})}>Top Rated</MenuItem>
+									<MenuItem eventKey="3" onClick={()=>this.setState({sortBy:'Price: Low to High'})}>Price: Low to High </MenuItem>
+									<MenuItem eventKey="4" onClick={()=>this.setState({sortBy:'Price: High to Low'})}>Price: High to Low </MenuItem>
 								</DropdownButton>
 							</Col>
 
