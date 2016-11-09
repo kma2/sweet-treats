@@ -1,6 +1,11 @@
 import React from 'react';
 
 import {Grid, Row, Col, Button} from 'react-bootstrap';
+import {browserHistory} from 'react-router';
+
+const redirectToCheckout = function() {
+	browserHistory.push('/checkout')
+}
 
 // this component is what an individual item looks like in the shopping cart
 
@@ -44,6 +49,6 @@ export default (props) => (
 			</Grid>
 			)
 		})}
-		<Button className="btn btn-default" onClick={()=>{console.log("i'm checking you out lul")}}> Checkout </Button>
+		<Button className="checkoutBtn" onClick={()=> redirectToCheckout()}> Checkout </Button>
 	</div>
 )
