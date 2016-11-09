@@ -4,6 +4,7 @@ body {
   background: white;
   font-family: Helvetica, sans-serif;
   font-size: 16px;
+  padding-top: 5%;
 }
 
 
@@ -93,8 +94,4 @@ body {
   font-size: 0.9em;
 }
 
-/* ===== NAVBAR LINK ===== */
-
-/*.navbarLink {
-  text-decoration: none;
-}*/
+/* ===== NAVBAR ===== */

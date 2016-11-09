@@ -1,6 +1,8 @@
 import React from 'react';
 import {Grid, Row, Col, Form, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
+import NavbarComponent from './Navbar';
 
 // component for users to log into their accounts
 export default class Register extends React.Component {
@@ -8,6 +10,21 @@ export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.state = {loggedIn: ""};
+    this.changeLoginTextWithoutRerender = this.changeLoginTextWithoutRerender.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('api/checkLogin')
+    .then(res => res.data)
+    .then(status => {
+      if (status === "logged in") {
+        this.setState({loggedIn: "Logout"})
+      }
+      else {
+        this.setState({loggedIn: "Login"})
+      }
+    })
   }
 
   render () {
@@ -63,6 +80,7 @@ export default class Register extends React.Component {
     }
 
     axios.post('/api/user/register', credentials)
+    .then(() => browserHistory.push('/home'))
     .catch(err => console.error(err));
   }
 

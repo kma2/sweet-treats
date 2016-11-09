@@ -5,6 +5,22 @@ export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
 // export const RECEIVE_USER_FROM_SERVER = 'RECEIVE_USER_FROM_SERVER';
 // export const REGISTER_USER_TO_SERVER = 'REGISTER_USER_TO_SERVER';
+// export const LOGIN = 'LOGIN';
+// export const LOGOUT = 'LOGOUT';
+
+// export const login = function (string) {
+//   return {
+//     type: LOGIN,
+//     status: string
+//   };
+// };
+
+// export const logout = function (string) {
+//   return {
+//     type: LOGOUT,
+//     status: string
+//   };
+// };
 
 const receiveProductsFromServer = function (products) {
   return {
