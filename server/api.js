@@ -39,6 +39,7 @@ api
   // adding a candy to an order (NEED TO FIX USERORDERS TABLE)
   .post('/candy/:id',(req,res,next) => {
     if(req.session.user){
+      console.log(req.session)
       Order.findOne({
         where:{
           status:'pending',
@@ -65,6 +66,7 @@ api
           id:req.params.id
         }
       }).then(candy =>{
+        console.log('session',req.session)
         console.log('before',req.session.cart)
         req.session.cart.order = addCandy(req.session.cart.order,candy)
         // console.log('after',req.session.cart)
@@ -127,10 +129,13 @@ api
 
   // get all candy
   .get('/candy',(req,res) =>{
+    console.log("get candy session: ",req.session)
     if (!req.session.cart) {
       req.session.cart = {};
       req.session.cart.order = [];
+      console.log('session mod ',req.session)
     }
+    // console.log('session ',req.session)
     Candy.findAll({})
     .then((candies) =>{
       res.send(candies)
@@ -149,6 +154,8 @@ api
 
   // user can logout
    .get('/user/logout',(req,res) =>{
+     console.log('sess',req.session)
+     console.log("logout called *************************")
      req.session.destroy()
      res.sendStatus(204)
   })
@@ -246,7 +253,7 @@ api
   })
  
   //get a specific order 
-  .get('/order',(req,res) =>{  
+  .get('/order',(req,res) =>{   
     console.log("in order fam")
     if (req.session.user) {
       console.log('in session')
@@ -260,7 +267,7 @@ api
         .then(candies =>{
           let arrToReturn = []
           candies.forEach(candy =>{
-            arrToReturn.push({candy:candy.dataValues,quantity:candy.candyOrder.quantity})
+            arrToReturn.push({candy:candy,quantity:candy.candyOrder.quantity})
           })
           res.send(arrToReturn)
         })
