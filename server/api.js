@@ -27,6 +27,7 @@ const addCandy = function(order,candy,decrement){
   if(shouldAdd && decrement !== 'decrement'){
     order.push({candy:candy,quantity:1})
   }
+  console.log('afsoaofppon',order)
   return order
 }
 api
@@ -114,10 +115,9 @@ api
       //Query for candy
       Candy.findOne({
         where:{
-          id:req.params.id
+          id:req.params.candyId
         }
       }).then(candy =>{
-        console.log(req.params.type)
         req.session.cart.order = addCandy(req.session.cart.order,candy,req.params.type)
         console.log('after',req.session.cart)
         res.sendStatus(204)
