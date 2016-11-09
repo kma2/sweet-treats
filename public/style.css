@@ -100,3 +100,10 @@ body {
   padding-left: 5%;
 }
 
+
+/* =======CHECKOUT BUTTON ====== */
+
+.checkoutBtn {
+    display: inline-block;
+    margin-left: 85%;
+}
