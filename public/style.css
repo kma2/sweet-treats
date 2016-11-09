@@ -94,4 +94,9 @@ body {
   font-size: 0.9em;
 }
 
-/* ===== NAVBAR ===== */
+/* ===== CONFIRMATION PAGE ===== */
+
+.itemsForm {
+  padding-left: 5%;
+}
+
