@@ -30,7 +30,6 @@ module.exports = app
   .use(session({
     cookieName: 'session',
     secret: 'lakjdfoiasnalsjlafglakvlasmcoim93849384750734985km8cheerios',
-    duration: 60*60*1000
   }))
 
   //sessions added by Katy & Brandon

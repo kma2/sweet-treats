@@ -15,8 +15,8 @@ const receiveProductsFromServer = function (products) {
 
 export const loadProducts = function () {
   return function (dispatch) {
-    fetch('/api/candy')
-      .then(res => res.json())
+    axios.get('/api/candy')
+      .then(res => res.data)
       .then(products => {
         const action = receiveProductsFromServer(products);
         dispatch(action);
