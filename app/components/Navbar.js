@@ -36,7 +36,7 @@ export default class NavbarComponent extends React.Component {
 			  <Navbar collapseOnSelect fixedTop>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        <Link to="home"><span>sweet treats</span></Link>
+			        <Link to="home"><span>Sweet Treats</span></Link>
 			      </Navbar.Brand>
 			      <Navbar.Toggle />
 			    </Navbar.Header>
@@ -47,7 +47,7 @@ export default class NavbarComponent extends React.Component {
 			    	<NavItem eventKey={1} className= "navbarLogin" onClick = {this.hitLogOutRoute}>Logout</NavItem> :
 			    	<NavItem eventKey={2} className= "navbarLogin"><Link to="signin" style = {{textDecoration: 'none', color: '#777'}}>Login</Link></NavItem>
 			  	}
-			        <NavItem eventKey={3} className= "navbarLink"><Link to ="cart" style = {{textDecoration: 'none', color: '#777'}}>Shopping Cart (1)</Link></NavItem>
+			        <NavItem eventKey={3} className= "navbarLink"><Link to ="cart" style = {{textDecoration: 'none', color: '#777'}}>Shopping Cart</Link></NavItem>
 			      </Nav>
 			    </Navbar.Collapse>
 				</Navbar>
