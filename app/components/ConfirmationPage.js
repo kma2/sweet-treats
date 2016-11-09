@@ -6,14 +6,14 @@ export default () => (
   <Form horizontal>
       <Col xs={12} md={5}>
         <FormGroup controlId="formHorizontalOrderConfirmed">
-          <Col xs={12}>
+          <Col xs={12} className = "thanksForm">
           	<h3>Thanks for your order.</h3>
             <h5>Your purchase details are below</h5>
           </Col>
         </FormGroup>
       </Col>
 
-      <FormGroup controlId="formHorizontalOrderConfirmed">
+      <FormGroup controlId="formHorizontalOrderConfirmed" className = "itemsForm">
         <Col xs={12}>
           <h4>Items</h4>
         </Col>
