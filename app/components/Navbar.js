@@ -33,7 +33,7 @@ export default class NavbarComponent extends React.Component {
 
 	render() {
 		return (
-			  <Navbar collapseOnSelect>
+			  <Navbar collapseOnSelect fixedTop>
 			    <Navbar.Header>
 			      <Navbar.Brand>
 			        <Link to="home"><span>sweet treats</span></Link>
