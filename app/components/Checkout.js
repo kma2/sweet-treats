@@ -22,9 +22,7 @@ var PaymentForm = React.createClass ({
 
   onScriptLoaded: function() {
     if (!PaymentForm.getStripeToken) {
-
-      // Put your publishable key here
-      Stripe.setPublishableKey('pk_test_xxxx');
+      Stripe.setPublishableKey('pk_test_zDeCOo6tzBA2PWz4VUMJAmcN'); // this is Katy's Stripe Test Publishable key
       this.setState({ stripeLoading: false, stripeLoadingError: false });
     }
   },
@@ -33,9 +31,8 @@ var PaymentForm = React.createClass ({
     this.setState({ stripeLoading: false, stripeLoadingError: true });
   },
 
-
   render: function() {
-    if (this.state.stripeLoading) {
+    {/* if (this.state.stripeLoading) {
       return <div>Loading</div>;
     }
     else if (this.state.stripeLoadingError) {
@@ -44,12 +41,11 @@ var PaymentForm = React.createClass ({
     else if (this.state.paymentComplete) {
       return <div>Payment Complete!</div>;
     }
-    else {
+    else { */}
 
       return (
 
       	// -------BILLING INFO -------
-
         <Form horizontal>
           {/*<Col xs={12} md={5}>
             <FormGroup controlId="formHorizontalFirstName">
@@ -284,7 +280,7 @@ var PaymentForm = React.createClass ({
           </FormGroup>
         </Form>
       )
-    }
+    {/* } */}
   },
 
   onSubmit: function(event) {
